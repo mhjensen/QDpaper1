@@ -146,14 +146,46 @@ The prototype system for measurements of two electron's in-plane motional state 
 \end{figure}
 
 \section{Computational Methods} % Hakon, Oyvind
-    As we are only studying a model comprised of two electrons restricted to move in a
-    one-dimensional external potential we have employed the
-    \emph{ab-initio} method configuration-interaction to compute the steady-state
-    properties of the system.
-    We have used a static, one-dimensional, grid-based basis set for the single-particle
+    As we are studying a model comprised of two electrons restricted to move in a
+    one-dimensional external potential we have employed exact diagonalization of the
+    two-body Schrödinger equation to solve the problem.
+    We build an anti symmetric two-particle wave function from a set of single-particle
     functions.
+    The basis of single-particle functions are eigenstates of the one-body Hamiltonian
+    represented on a discrete grid.
     This allows for flexibility in the choice of the external potential, and fits the
     interpolated potential particularly well.
+
+    \subsection{The Hamiltonian}
+        The full Hamiltonian for two interacting electrons in an external
+        potential $v(x)$ is given by
+        \begin{align}
+            \hat{H}
+            = \sum_{i = 1}^{2}\qty(
+                -\frac{\hbar^2}{2m}\dv[2]{}{x_i}
+                + v(x_i)
+            )
+            + u(x_1, x_2),
+        \end{align}
+        where we use a soft-Coulomb interaction $u(x_1, x_2)$ to remove the
+        singularity at the origin.
+        It is given by
+        \begin{align}
+            u(x_1, x_2)
+            =
+            \frac{\alpha}{\sqrt{\qty(x_1 - x_2)^2 + a^2}},
+        \end{align}
+        where we have set $e = (4 \pi \epsilon_0)^{-1} = 1$.
+        % Note: Scaling should maybe be discussed in full when introducing kappa
+        Here $\alpha$ adjusts the strength of the interaction, and $a$ removes
+        the singularity at $x_1 = x_2$.
+        % Note: This is a repetition of what was said above the interaction operator.
+        For numerical analysis we wish to use a dimensionless expression for the
+        Hamiltonian.
+        This is done by...
+        % Note: Recap the steps needed to construct the dimensionless Hamiltonian.
+
+
     
     \subsection{The Hamiltonian}
     The Hamiltonian of $N$ interacting electrons confined by some potential $v(\vb{r})$ can be written on general form 
