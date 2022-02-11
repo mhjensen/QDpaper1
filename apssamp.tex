@@ -167,9 +167,7 @@ The prototype system for measurements of two electron's in-plane motional state 
             )
             + u(x_1, x_2),
         \end{align}
-        where we use a soft-Coulomb interaction $u(x_1, x_2)$ to remove the
-        singularity at the origin.
-        It is given by
+        where we use a soft-Coulomb interaction $u(x_1, x_2)$ given by
         \begin{align}
             u(x_1, x_2)
             =
@@ -179,55 +177,22 @@ The prototype system for measurements of two electron's in-plane motional state 
         % Note: Scaling should maybe be discussed in full when introducing kappa
         Here $\alpha$ adjusts the strength of the interaction, and $a$ removes
         the singularity at $x_1 = x_2$.
-        % Note: This is a repetition of what was said above the interaction operator.
+        The kinetic energy operator and the external potential $v(x_i)$ constitutes
+        the one-body part of the Hamiltonian.
+        We will denote the one-body Hamiltonian by $\hat{h}$.
+        There is no spin-dependence in this system.
+        % TODO: Reference work discussing the suitability of this for the liquid
+        % helium system.
         For numerical analysis we wish to use a dimensionless expression for the
         Hamiltonian.
         This is done by...
         % Note: Recap the steps needed to construct the dimensionless Hamiltonian.
 
-
-    
-    \subsection{The Hamiltonian}
-    The Hamiltonian of $N$ interacting electrons confined by some potential $v(\vb{r})$ can be written on general form 
-    \begin{equation}
-        \hat{H} = \sum_{i=1}^N \left(-\frac{1}{2}\nabla_i^2 + v(\vb{r}_i) \right) + \sum_{i < j} \hat{u}(r_i, r_j),
-    \end{equation}
-    where $\hat{u}(i,j)$ is the electron-electron (Coulomb) interaction. 
-    
-    Many-body methods are commonly written in second-quantized form where the Hamiltonian takes the form 
-    \begin{equation}
-        \hat{H} = \sum_{pq} \mel{\psi_p}{\hat{h}}{\psi_q}\hat{a}_p^\dagger \hat{a}_q + \frac{1}{4}\sum_{pqrs} \mel{\psi_p \psi_q}{\hat{u}}{\psi_r \psi_s} \hat{a}_p^\dagger \hat{a}_q^\dagger \hat{a}_s \hat{a_r},
-    \end{equation}
-    where $a_p^\dagger$ and $a_p$ are creation and annihilation operators associated with the single-particle function $\ket{\psi_p}$.
-    
-    We consider a one-dimensional model where the confining potential is parametrized/obtained from finite element calculations, see \ref{fig3}. 
-    
-    The bare Coulomb interaction is divergent in 1D (REF) and it is customary to use a smoothed Coulomb interaction~\cite{su-coulomb} given by 
-    \begin{align}
-        u(x_1, x_2) = \frac{\alpha}{\sqrt{(x_1 - x_2)^2 + a^2}},
-    \end{align}
-    where $\alpha$ adjusts the strength of the interaction and $a$ removes
-    the singularity at $x_1 = x_2$.
-    
-    The single-particle functions (qubit states is a possible name here) are chosen as the eigenfunctions of the single-particle Hamiltonian
-    \begin{equation}
-        \left( -\dv[2]{}{x}+v(x) \right) \psi_p(x) = \epsilon_p \psi_p(x).
-    \end{equation}
-    
-    It should be noted that this implies that Slater determinants built from the single-particle are eigenfunctions of the non-interacting many-body Hamiltonian
-    \begin{equation}
-     \left( \sum_{i=1}^N -\frac{1}{2}\laplacian_i + v(\vb{r}_i)  \right) \ket{\Phi_p} = E_p \ket{\Phi_p},
-    \end{equation}
-    where $\ket{\Phi_p} = \ket{\psi_{p_1}\cdots \psi_{p_N}}$ and 
-    \begin{equation}
-        E_p = \sum_{i=1}^N \epsilon_{p_i}.
-    \end{equation}
-    
-    \begin{enumerate}
-        \item interaction with EM field
-    \end{enumerate}
-    
-    \subsection{Finite difference basis set}
+    \subsection{Single-particle basis}
+        To build a two-body wave function we will use a single-particle basis.
+        As much of the analysis will be performed by varying the shape and
+        strength of the interpolated external potential we deem a flexible
+        finite-difference basis set a suitable candidate.
         The time-independent one-dimensional system can be described by the one-body
         Hamiltonian
         \begin{align}
@@ -274,12 +239,14 @@ The prototype system for measurements of two electron's in-plane motional state 
             \psi_k(x_1)\psi_l(x_2),
         \end{align}
         by the use of the trapezoidal rule integrating over $x_2$ first.
-        
-        \begin{enumerate}
-            \item Dimensional scaling.
-        \end{enumerate}
+    
 
-    \subsection{Full configuration-interaction method}
+    \subsection{Solving the full two-body problem}
+        Due to there only being two particles we will solve the full problem
+        using exact diagonalization \footnote{
+            By ``exact'' we here mean that the solution is exact within the
+            truncated, approximate finite-difference basis set.
+        }.
         Having set up the matrix elements for the one-body Hamiltonian $h(x)$ and the
         two-body shielded Coulomb interaction $u(x_1, x_2)$ we build a fermionic
         many-body basis from Slater determinants.
