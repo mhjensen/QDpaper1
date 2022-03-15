@@ -188,31 +188,75 @@ The prototype system for measurements of two electron's in-plane motional state 
         This is done by...
         % Note: Recap the steps needed to construct the dimensionless Hamiltonian.
 
-    \subsection{Single-particle basis}
+    \subsection{Constructing the single-particle basis sets}
         To build a two-body wave function we will use a single-particle basis.
         As much of the analysis will be performed by varying the shape and
         strength of the interpolated external potential we deem a flexible
         finite-difference basis set a suitable candidate.
-        The time-independent one-dimensional system can be described by the one-body
-        Hamiltonian
+        The single-particle time-independent one-dimensional system can be
+        described by the one-body Hamiltonian
         \begin{align}
-            h(x) = -\frac{\hbar^2}{2m}\dv[2]{}{x}
+            h(x) = -\frac{1}{2}\dv[2]{}{x}
             + v(x),
         \end{align}
         where the external potential $v(x)$ is an arbitrary function of the grid $x$.
-        We proceed by discretizing the grid and use the second-order central differences
-        method for the double-derivative.
+        We proceed by discretizing the grid into $N_g$ uniform points with a spacing
+        $\Delta x$ and use the second-order central differences method for the
+        double-derivative.
         Building a tridiagonal matrix from the grid points, we solve the eigenvalue
         equation and choose the $l$ first eigenstates (i.e., the eigenstates with the
         lowest eigenenergy) as the single-particle basis $\{\psi_i\}_{i = 1}^l$.
-        This means that $\braket{\psi_i}{\psi_j} = \delta_{ij}$ and we have
-        the matrix elements
+        These basis states will be normalized with respect to the dot product (as we
+        find the coefficients of the discretized grid).
+        That is $\sum_{j = 1}^{N_g} | \psi_i(x_j) |^{2} = 1$, however we want our
+        states to be normalized with respect to the integral which entails a
+        differential $\dd{x} \approx \Delta x$.
+        As our grid is uniform we can then normalize the single-particle states
+        by $\psi_i(x_j) \to \psi_i(x_j) / \sqrt{\Delta x}$.
+        We then get $\braket{\psi_i}{\psi_j} = \delta_{ij}$ and the one-body matrix
+        elements are given by
         \begin{align}
             h_{ij} \equiv \mel{\psi_i}{\hat{h}}{\psi_j}
             = \delta_{ij}\varepsilon_j,
         \end{align}
-        where no summation is implied, and $\varepsilon_j$ is the eigenenergy of
-        $\psi_j$ for $h(x)$.
+        where no summation is implied, and $\varepsilon_j$ are the eigenenergies.
+
+        Now, for the specific problem that  we are solving the system is described
+        by two deep wells.
+        The wells will be so deep that there will be no tunneling between the
+        barrier in the bound states that we will use for our single-particle
+        basis.
+        Furthermore, the Coulomb repulsion will be strong enough to ensure that
+        we will not see any two-body eigenstates with two particles in one of
+        the wells.
+        This makes the system split up into two distinguishable subsystems
+        which we label $L$ and $R$ for the left and right well respectively.
+        In order to distinguish these systems from one another in the
+        two-particle picture we will construct two disjoint single-particle
+        basis sets $\qty{\phi^{L}_{i}}_{i = 1}^{N_L}$ and
+        $\qty{\phi^{R}_{i}}_{i = 1}^{N_R}$, where
+        $\braket{\phi^{A}_{i}}{\phi^{B}_{j}} = \delta^{AB} \delta_{ij}$.
+   
+
+    \subsection{Describing the two-body problem}
+        Due to there only being two particles we will solve the full problem
+        using exact diagonalization \footnote{
+            By ``exact'' we here mean that the solution is exact within the
+            truncated, approximate, finite-difference basis set.
+        }.
+        Having set up the matrix elements for the one-body Hamiltonian $h(x)$ and the
+        two-body shielded Coulomb interaction $u(x_1, x_2)$ we build a fermionic
+        many-body basis from Slater determinants.
+        This ensures that the many-body wave function is anti symmetric with regards to
+        particle exchange as dictated by the Pauli principle.
+        In practice however the two wells will be so deep, and the Coulomb interaction
+        so strong that there will be no tunneling between the two wells for a large
+        number of bound states.
+        Furthermore, by restricting our view to the spatial component and ignoring spin
+        we get a distinguishable model as an electron trapped in one of the wells will
+        remain in the same well and we can label each sub system.
+        This means that there is no need to treat the particles as fermions.
+        % Note, perhaps make a choice of using a distinguishable model or not?
 
         For the full many-body system we need the matrix elements of the Coulomb
         interaction operator
@@ -239,26 +283,7 @@ The prototype system for measurements of two electron's in-plane motional state 
             \psi_k(x_1)\psi_l(x_2),
         \end{align}
         by the use of the trapezoidal rule integrating over $x_2$ first.
-    
-
-    \subsection{Solving the full two-body problem}
-        Due to there only being two particles we will solve the full problem
-        using exact diagonalization \footnote{
-            By ``exact'' we here mean that the solution is exact within the
-            truncated, approximate, finite-difference basis set.
-        }.
-        Having set up the matrix elements for the one-body Hamiltonian $h(x)$ and the
-        two-body shielded Coulomb interaction $u(x_1, x_2)$ we build a fermionic
-        many-body basis from Slater determinants.
-        This ensures that the many-body wave function is anti symmetric with regards to
-        particle exchange as dictated by the Pauli principle.
-        In practice however the two wells will be so deep, and the Coulomb interaction
-        so strong that there will be no tunneling between the two well.
-        Furthermore, this will give the single-particle basis states that are
-        restricted to one of the wells, and the two-body problem can be described using
-        a distinguishable model, i.e., there is no need to treat the two electrons as
-        fermions.
-        % Note, perhaps make a choice of using a distinguishable model or not?
+ 
 
         
 \begin{figure}
