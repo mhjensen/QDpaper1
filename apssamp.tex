@@ -222,20 +222,53 @@ The prototype system for measurements of two electron's in-plane motional state 
         where no summation is implied, and $\varepsilon_j$ are the eigenenergies.
 
         Now, for the specific problem that  we are solving the system is described
-        by two deep wells.
-        The wells will be so deep that there will be no tunneling between the
+        by two deep wells $v^{L}(x)$ and $v^{R}(x)$, where $L$ and $R$ are labels
+        for the left and right well respectively.
+        The wells will be so deep that there will be no tunneling over the
         barrier in the bound states that we will use for our single-particle
         basis.
         Furthermore, the Coulomb repulsion will be strong enough to ensure that
         we will not see any two-body eigenstates with two particles in one of
         the wells.
         This makes the system split up into two distinguishable subsystems
-        which we label $L$ and $R$ for the left and right well respectively.
+        that we label $L$ and $R$ with one particle in each subsystem.
         In order to distinguish these systems from one another in the
         two-particle picture we will construct two disjoint single-particle
         basis sets $\qty{\phi^{L}_{i}}_{i = 1}^{N_L}$ and
         $\qty{\phi^{R}_{i}}_{i = 1}^{N_R}$, where
         $\braket{\phi^{A}_{i}}{\phi^{B}_{j}} = \delta^{AB} \delta_{ij}$.
+        Using the finite-difference approach described above we can set up this
+        basis in two different ways.
+        The first is to diagonalize the full one-body Hamiltonian
+        \begin{align}
+            h(x) = -\frac{1}{2} \dv[2]{}{x} + v^{L}(x) + v^{R}(x),
+        \end{align}
+        and then sort the eigenstates by which well they are localized in.
+        To do this we can compute the center of mass of the single-particle
+        wave function and see where it is centered.
+        % TODO: Maybe include a plot of this? Optionally in a supplementary
+        % materials.
+        The drawback when using this method is we must include a large number
+        of basis states when the wells far detuned.
+        This is because the eigenstates with the lowest eigenvalue are best
+        described.
+        Therefore, to localize states in the highest energy well will require
+        very high energy states.
+
+        The second approach is to \emph{a priori} determine that the
+        eigenstates will split up into two disjoint sets, where
+        $v^{L}(x) \phi^{R}(x) = v^{R}(x) \phi^{L}(x) = 0$.
+        % TODO: This condition should be tested explicitly.
+        We can then construct two one-body Hamiltonian operators given
+        by
+        \begin{align}
+            h^{A}(x) \equiv -\frac{1}{2} \dv[2]{}{x} + v^{A}(x),
+        \end{align}
+        which we can separately diagonalize, and construct a set of
+        single-particle eigenpairs.
+        For the potential wells we describe both approaches will give the
+        same eigenpairs to numerical precision.
+        % TODO: This should be backed up, and formulated a little differently.
    
 
     \subsection{Describing the two-body problem}
