@@ -1,4 +1,4 @@
-% ****** Start of file apssamp.tex ******
+    % ****** Start of file apssamp.tex ******
 %
 %   This file is part of the APS files in the REVTeX 4.2 distribution.
 %   Version 4.2a of REVTeX, December 2014
@@ -69,7 +69,7 @@
 \affiliation{Department of Physics and Center for Computing in Science Education, University of Oslo, N-0316 Oslo, Norway}
 \author{Johannes Pollanen}
 \affiliation{Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}
-\author{Angela Wilson}
+\author{Angela K. Wilson}
 \affiliation{Department of Chemistry, Michigan State University, East Lansing, MI 48824, USA}
 \begin{abstract}
   Here we describe a method for generating motional entanglement between two electrons trapped above the surface of superfluid helium. In this proposed scheme the electrons are laterally confined via electrostatic gates to create an anharmonic trapping potential 
@@ -138,7 +138,12 @@ Our work's place in this field
 %general information about electrons on helium
 Surface state electrons (SSE) 'floating' above liquid helium originates from quantization of electron's perpendicular to the surface motion in a trapping potential formed by attractive force from image charge and a large $\sim$ 1 eV barrier at the liquid-vacuum interface. At low temperatures the SSE are trapped in the lowest Rydberg state for vertical motion some 11 nm above the helium surface, which is perfectly clean and has a permittivity close to that of vacuum. The weak interaction with enviorment, which is mainly governed by interaction with quantized surface capillary waves (ripplons) and bulk phonons, ensures long coherence times - a vital ingredient for any qubit platform. SSE's in-plane motion can be further localized by using microdevices on the length scales approaching the interelectron separation (at the order of one micron).
 
-The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. 
+The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
+\begin{align}
+            V(x) = \sum_{i=1}^7 \alpha_i(x) V_i,
+            \label{eq:trap}
+\end{align}
+where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\ref{fig1}b and $V_i$ are voltages applied to them, and we keep top electrodes at the ground potential. In our scheme the double-well is achieved by providing a negative potential to the central electrode (electrode 4 in Fig.~\ref{fig1}a) with a more positive potentials applied to other electrodes.
 
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure1.pdf}
@@ -159,19 +164,20 @@ The prototype system for measurements of two electron's in-plane motional state 
     \subsection{The Hamiltonian}
         The full Hamiltonian for two interacting electrons in an external
         potential $v(x)$ is given by
-        \begin{align}
+        \begin{align*}
             \hat{H}
             = \sum_{i = 1}^{2}\qty(
                 -\frac{\hbar^2}{2m}\dv[2]{}{x_i}
                 + v(x_i)
             )
             + u(x_1, x_2),
-        \end{align}
+        \end{align*}
         where we use a soft-Coulomb interaction $u(x_1, x_2)$ given by
         \begin{align}
             u(x_1, x_2)
             =
             \frac{\alpha}{\sqrt{\qty(x_1 - x_2)^2 + a^2}},
+            \label{eq:soft-coulomb}
         \end{align}
         where we have set $e = (4 \pi \epsilon_0)^{-1} = 1$.
         % Note: Scaling should maybe be discussed in full when introducing kappa
@@ -195,10 +201,10 @@ The prototype system for measurements of two electron's in-plane motional state 
         finite-difference basis set a suitable candidate.
         The single-particle time-independent one-dimensional system can be
         described by the one-body Hamiltonian
-        \begin{align}
+        \begin{align*}
             h(x) = -\frac{1}{2}\dv[2]{}{x}
             + v(x),
-        \end{align}
+        \end{align*}
         where the external potential $v(x)$ is an arbitrary function of the grid $x$.
         We proceed by discretizing the grid into $N_g$ uniform points with a spacing
         $\Delta x$ and use the second-order central differences method for the
@@ -215,10 +221,10 @@ The prototype system for measurements of two electron's in-plane motional state 
         by $\psi_i(x_j) \to \psi_i(x_j) / \sqrt{\Delta x}$.
         We then get $\braket{\psi_i}{\psi_j} = \delta_{ij}$ and the one-body matrix
         elements are given by
-        \begin{align}
+        \begin{align*}
             h_{ij} \equiv \mel{\psi_i}{\hat{h}}{\psi_j}
             = \delta_{ij}\varepsilon_j,
-        \end{align}
+        \end{align*}
         where no summation is implied, and $\varepsilon_j$ are the eigenenergies.
 
         Now, for the specific problem that  we are solving the system is described
@@ -240,20 +246,23 @@ The prototype system for measurements of two electron's in-plane motional state 
         Using the finite-difference approach described above we can set up this
         basis in two different ways.
         The first is to diagonalize the full one-body Hamiltonian
-        \begin{align}
+        \begin{align*}
             h(x) = -\frac{1}{2} \dv[2]{}{x} + v^{L}(x) + v^{R}(x),
-        \end{align}
+        \end{align*}
         and then sort the eigenstates by which well they are localized in.
         To do this we can compute the center of mass of the single-particle
         wave function and see where it is centered.
         % TODO: Maybe include a plot of this? Optionally in a supplementary
         % materials.
-        The drawback when using this method is we must include a large number
-        of basis states when the wells far detuned.
+        The drawback when using this method is that we must include a large
+        number of basis states when the wells are far detuned.
         This is because the eigenstates with the lowest eigenvalue are best
         described.
         Therefore, to localize states in the highest energy well will require
         very high energy states.
+        % TODO: Discuss this fact a little more. It can also be enough to
+        % demonstrate that the we need a lot of grid points to construct the
+        % eigenstates in one of the wells properly.
 
         The second approach is to \emph{a priori} determine that the
         eigenstates will split up into two disjoint sets, where
@@ -261,14 +270,53 @@ The prototype system for measurements of two electron's in-plane motional state 
         % TODO: This condition should be tested explicitly.
         We can then construct two one-body Hamiltonian operators given
         by
-        \begin{align}
+        \begin{align*}
             h^{A}(x) \equiv -\frac{1}{2} \dv[2]{}{x} + v^{A}(x),
-        \end{align}
+        \end{align*}
         which we can separately diagonalize, and construct a set of
-        single-particle eigenpairs.
+        single-particle eigenpairs for each well.
         For the potential wells we describe both approaches will give the
         same eigenpairs to numerical precision.
         % TODO: This should be backed up, and formulated a little differently.
+        The two sets of matrix elements for the one-body Hamiltonian will
+        then be
+        \begin{align*}
+            h^{A}_{ij}
+            \equiv \mel*{\phi^A_i}{\hat{h}^A}{\phi^A_j}
+            = \delta_{ij} \epsilon^{A}_j,
+        \end{align*}
+        where $\epsilon^A_i$ are the eigenenergies of $\hat{h}^A$.
+        We then have that $\braket*{\phi^A_i}{\phi^B_j} = \delta^{AB}
+        \delta_{ij}$ as the two sets of basis states are so far removed
+        that they share no overlap (hence, $\delta^{AB}$), and as they
+        are eigenstates (hence, $\delta_{ij}$).
+
+        For the full many-body system we need the matrix elements of the
+        soft-Coulomb interaction operator $u(x_1, x_2)$ from
+        equation \eqref{eq:soft-coulomb}.
+        As we are using a finite-difference basis set, we will compute the matrix
+        elements using numerical integration.
+        That is, we compute the matrix elements (for a general basis of
+        single-particle states $\qty{\psi_i}$)
+        \begin{align*}
+            u_{ij, kl}
+            &\equiv \mel{\psi_i\psi_j}{\hat{u}}{\psi_k\psi_l}
+            \\
+            &= \int\dd{x_1} \dd{x_2}
+            \psi_i^{*}(x_1)\psi_j^{*}(x_2)u(x_1, x_2)
+            \psi_k(x_1)\psi_l(x_2),
+        \end{align*}
+        by the use of the trapezoidal rule integrating over $x_2$ first.
+        We construct the matrix elements $W_{ij}(x)$ given by
+        \begin{align*}
+            W_{ij}(x)
+            = \int \dd{y} \psi^{*}_i(y) u(x, y) \psi_j(y),
+        \end{align*}
+        and use this to compute the two-body matrix elements from
+        \begin{align*}
+            u_{ij, kl}
+            = \int \dd{x_1} \psi^{*}_{i}(x_1) W_{jl}(x_1) \psi_k(x_1).
+        \end{align*}
    
 
     \subsection{Describing the two-body problem}
@@ -277,11 +325,137 @@ The prototype system for measurements of two electron's in-plane motional state 
             By ``exact'' we here mean that the solution is exact within the
             truncated, approximate, finite-difference basis set.
         }.
-        Having set up the matrix elements for the one-body Hamiltonian $h(x)$ and the
-        two-body shielded Coulomb interaction $u(x_1, x_2)$ we build a fermionic
-        many-body basis from Slater determinants.
-        This ensures that the many-body wave function is anti symmetric with regards to
-        particle exchange as dictated by the Pauli principle.
+        The wave function ansatz we will use is given by
+        \begin{align*}
+            \ket*{\Psi_I}
+            &= C_{JI} \ket*{\Phi_J},
+        \end{align*}
+        where $\ket*{\Phi_I}$ is a Slater determinant to ensure that the wave
+        function is fully anti symmetric.
+        A two-body Slater determinant is given by
+        \begin{align*}
+            \ket*{\Phi_I}
+            = \frac{1}{\sqrt{2}} \qty(
+                \ket*{\psi_i \psi_j}
+                - \ket*{\psi_j \psi_i}
+            ),
+        \end{align*}
+        where $I \mapsto (i, j)$ is a compound index with $i < j$.
+        For $i = j$ the determinant disappears, and
+        $\ket{\Phi_{ij}} = - \ket{\Phi_{ji}}$.
+        Inserting the wave function ansatz into the time-independent Schrödinger
+        equation, and projecting onto a Slater determinant $\bra*{\Phi_I}$ we
+        get
+        \begin{align*}
+            \mel*{\Phi_I}{\hat{H}}{\Psi_J}
+            = H_{IK} C_{KJ}
+            = S_{IK} C_{KJ} E_{J},
+        \end{align*}
+        where $H_{IK} \equiv \mel*{\Phi_I}{\hat{H}}{\Phi_K}$ are the matrix
+        elements of the Hamiltonian in the Slater determinant basis, and
+        $S_{IK} = \braket*{\Phi_I}{\Phi_K}$ are the overlap matrix elements
+        between two Slater determinants.
+        Solving this generalized eigenvalue equation gives us the
+        coefficients $C_{KJ}$ where the columns correspond to the
+        eigenstate $\ket*{\Psi_J}$, and the eigenenergies $E_J$.
+        The matrix elements of the Hamiltonian can be expressed as
+        \begin{align*}
+            H_{IK}
+            &= \frac{1}{2} \qty(
+                H_{ij, kl}
+                - H_{ij, lk}
+                - H_{ji, kl}
+                + H_{ji, lk}
+            ),
+        \end{align*}
+        where $H_{ij, kl} \equiv \mel*{\psi_i \psi_j}{\hat{H}}{\psi_k \psi_l}$
+        are the matrix elements of the Hamiltonian in the single-particle
+        product basis $\ket*{\psi_i \psi_j} \equiv \ket*{\psi_i} \otimes
+        \ket*{\psi_j}$.
+        As discussed in the previous section we know that the one-body Hamiltonian
+        will split up into two disjoint operators; one for the left-well and the
+        other for the right-well.
+        We can write the one-body Hamiltonian as $\hat{h} = \hat{h}^L \otimes \hat{1}
+        + \hat{1} \otimes \hat{h}^{R}$.
+        From the orthonormality condition of the two sets of eigenstates we can
+        then see that
+        \begin{align*}
+            h^{AB, CD}_{ij, kl}
+            &= \mel*{\phi^A_i \phi^B_j}{\hat{h}}{\phi^C_k \phi^D_l}
+            \\
+            &= \mel*{\phi^{A}_i}{\hat{h}^L}{\phi^C_k}
+            \braket*{\phi^B_j}{\phi^D_l}
+            + \braket*{\phi^A_i}{\phi^C_k}
+            \mel*{\phi^B_j}{\hat{h}^R}{\phi^{D}_l}
+            \\
+            &= \delta^{AC} \delta^{CL}
+            \delta_{ik} \epsilon^{L}_k
+            \delta^{BD} \delta_{jl}
+            + \delta^{AC} \delta_{ik}
+            \delta^{BD} \delta^{DR}
+            \delta_{jl} \epsilon^{R}_l
+            \\
+            &= \delta^{AC} \delta^{BD}
+            \delta_{ik} \delta_{jl} \qty(
+                \delta^{CL} \epsilon^L_k
+                + \delta^{DR} \epsilon^{R}_l
+            ).
+        \end{align*}
+        For the matrix elements of the Coulomb interaction no such splitting will
+        occur.
+        However, as we are considering the case where there is one electron in each
+        well, and no tunneling will occur for the energies we are looking at, no
+        Slater determinants with both single-particle states from the same well will
+        contribute.
+        That is, the only non-zero elements we will need are
+        \begin{align*}
+            u^{AB, CD}_{ij, kl}
+            &= \mel*{\phi^A_i \phi^B_j}{\hat{u}}{\phi^C_k \phi^D_l}
+            \\
+            \quad
+            &= \delta^{AC} \delta^{BD}
+            u^{AB, AB}_{ij, kl},
+        \end{align*}
+        where we note the symmetry $u^{AB, CD}_{ij, kl} = u^{BA, DC}_{ji, lk}$.
+
+        From the matrix elements of the one-body Hamiltonian and the Coulomb operator
+        we can thus see that the model reduces to a distinguishable model as the
+        Hamiltonian matrix elements are given by $H^{AB, CD}_{ij, kl} = \delta^{AC}
+        \delta^{BD} H^{AB, AB}_{ij, kl}$, and $H^{AB, AB}_{ij, kl}
+        = H^{BA, BA}_{ji, lk}$.
+        This means that the matrix elements of the Hamiltonian in the Slater
+        determinant basis reduces to
+        \begin{align*}
+            H_{IK} = H^{LR, LR}_{ij, kl},
+        \end{align*}
+        where the Slater determinants are chosen to be
+        \begin{align*}
+            \ket*{\Phi_{I}}
+            = \frac{1}{2} \qty(
+                \ket*{\phi^L_i \phi^R_j}
+                - \ket*{\phi^R_j \phi^L_i}
+            ).
+        \end{align*}
+        % TODO: Rewrite this section using the distinguishable model.
+        % The results should also be done in the distinguishable model.
+        Having diagonalized the Hamiltonian we get the coefficients for
+        the eigenstates in the Slater determinant basis.
+
+    \subsection{Spin considerations}
+        We have so far in this discussion ignored the spin component of the electrons.
+        As we are considering two electrons we expect to see singlet and triplet
+        configurations for the total wave function.
+        The Hamiltonian is spin-independent and we can therefore limit our attention
+        to the spatial components of the wave functions.
+        % TODO: Add reference to the lack of spin interactions in the liquid helium
+        % system?
+        Furthermore, as the system is described by a double-well with a separate
+        spatial basis for each well, we know that the singlet and the triplet states
+        will be degenerate for all states where there is one particle in each well
+        (which is the only case we consider in this work),
+        and we can fully factorize out the spin-part of the problem.
+
+        % TODO: This paragraph should be removed at some point in time.
         In practice however the two wells will be so deep, and the Coulomb interaction
         so strong that there will be no tunneling between the two wells for a large
         number of bound states.
@@ -291,34 +465,17 @@ The prototype system for measurements of two electron's in-plane motional state 
         This means that there is no need to treat the particles as fermions.
         % Note, perhaps make a choice of using a distinguishable model or not?
 
-        For the full many-body system we need the matrix elements of the Coulomb
-        interaction operator
-        \begin{align}
-            u(x_1, x_2) = \frac{1}{\abs{x_1 - x_2}},
-        \end{align}
-        however this operator is divergent, both analytically and numerically.
-        To get around this we introduce the shielded Coulomb operator \cite{su-coulomb}
-        \begin{align}
-            u(x_1, x_2) = \frac{\alpha}{\sqrt{(x_1 - x_2)^2 + a^2}},
-        \end{align}
-        where $\alpha$ adjusts the strength of the interaction and $a$ removes
-        the singularity at $x_1 = x_2$.
-        % TODO: We should discuss the values of alpha and a, especially in the
-        % dimensionless setting.
-        We compute the matrix elements of $u(x_1, x_2)$ by numerical integration.
-        That is, we compute the matrix elements
-        \begin{align}
-            u^{ij}_{kl}
-            &\equiv \mel{\psi_i\psi_j}{\hat{u}}{\psi_k\psi_l}
-            \\
-            &= \int\dd x_1 \dd x_2
-            \psi_i^{*}(x_1)\psi_j^{*}(x_2)u(x_1, x_2)
-            \psi_k(x_1)\psi_l(x_2),
-        \end{align}
-        by the use of the trapezoidal rule integrating over $x_2$ first.
+    \subsection{Measuring the degree of entanglement}
+        % TODO: Describe the one-body density
+        % TODO: Describe the reduced density operators
+        % TODO: Describe the avoided crossing
+
  
 
         
+% TODO: Plot the coefficients of the eigenstates in well
+% configuration far from the avoided crossing, and close
+% to the avoided crossing.
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure2.pdf}
 \caption{\label{fig3} (a) Figure caption.}
@@ -330,6 +487,9 @@ The prototype system for measurements of two electron's in-plane motional state 
 \includegraphics[width=0.49\textwidth]{figure3.pdf}
 \caption{\label{fig3} (a) Figure caption.}
 \end{figure}
+
+% TODO: Plot the entropy as a function of the well
+% configurations.
 
 \section{Conclusions} % we can wait to write this one until the end
 
