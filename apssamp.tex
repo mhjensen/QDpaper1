@@ -154,10 +154,10 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
     As we are studying a model comprised of two electrons restricted to move in a
     one-dimensional external potential we have employed exact diagonalization of the
     two-body Schrödinger equation to solve the problem.
-    We build an anti symmetric two-particle wave function from a set of single-particle
+    We build a two-particle wave function from a set of single-particle
     functions.
-    The basis of single-particle functions are eigenstates of the one-body Hamiltonian
-    represented on a discrete grid.
+    The basis of single-particle functions we will use are eigenstates of the
+    one-body Hamiltonian represented on a discrete grid.
     This allows for flexibility in the choice of the external potential, and fits the
     interpolated potential particularly well.
 
@@ -183,22 +183,27 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         % Note: Scaling should maybe be discussed in full when introducing kappa
         Here $\alpha$ adjusts the strength of the interaction, and $a$ removes
         the singularity at $x_1 = x_2$.
+        The Coulomb interaction is symmetric with respect to the positions and
+        $u(x_1, x_2) = u(x_2, x_1)$.
         The kinetic energy operator and the external potential $v(x_i)$ constitutes
         the one-body part of the Hamiltonian.
         We will denote the one-body Hamiltonian by $\hat{h}$.
-        There is no spin-dependence in this system.
+        There is no spin-dependence in this system, and we will restrict our attention
+        to the spatial part of the problem.
         % TODO: Reference work discussing the suitability of this for the liquid
         % helium system.
+        % This can be done by referring to the section on spin considerations.
         For numerical analysis we wish to use a dimensionless expression for the
         Hamiltonian.
         This is done by...
         % Note: Recap the steps needed to construct the dimensionless Hamiltonian.
+        % TODO: Niyaz will handle this in the introduction
 
     \subsection{Constructing the single-particle basis sets}
-        To build a two-body wave function we will use a single-particle basis.
         As much of the analysis will be performed by varying the shape and
         strength of the interpolated external potential we deem a flexible
         finite-difference basis set a suitable candidate.
+        % TODO: List some other alternatives such as e.g., gaussians and DVR.
         The single-particle time-independent one-dimensional system can be
         described by the one-body Hamiltonian
         \begin{align*}
@@ -210,11 +215,12 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         $\Delta x$ and use the second-order central differences method for the
         double-derivative.
         Building a tridiagonal matrix from the grid points, we solve the eigenvalue
-        equation and choose the $l$ first eigenstates (i.e., the eigenstates with the
-        lowest eigenenergy) as the single-particle basis $\{\psi_i\}_{i = 1}^l$.
+        equation and choose the $l \leq N_g$ first eigenstates (i.e., the eigenstates
+        with the lowest eigenenergy) as the single-particle basis
+        $\{\psi_i\}_{i = 1}^l$.
         These basis states will be normalized with respect to the dot product (as we
         find the coefficients of the discretized grid).
-        That is $\sum_{j = 1}^{N_g} | \psi_i(x_j) |^{2} = 1$, however we want our
+        That is, $\sum_{j = 1}^{N_g} | \psi_i(x_j) |^{2} = 1$, however we want our
         states to be normalized with respect to the integral which entails a
         differential $\dd{x} \approx \Delta x$.
         As our grid is uniform we can then normalize the single-particle states
@@ -225,7 +231,7 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
             h_{ij} \equiv \mel{\psi_i}{\hat{h}}{\psi_j}
             = \delta_{ij}\varepsilon_j,
         \end{align*}
-        where no summation is implied, and $\varepsilon_j$ are the eigenenergies.
+        where $\varepsilon_j$ are the eigenenergies.
 
         Now, for the specific problem that  we are solving the system is described
         by two deep wells $v^{L}(x)$ and $v^{R}(x)$, where $L$ and $R$ are labels
@@ -235,14 +241,24 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         basis.
         Furthermore, the Coulomb repulsion will be strong enough to ensure that
         we will not see any two-body eigenstates with two particles in one of
-        the wells.
+        the wells for the energy levels that we are interested in.
+        % TODO: We will not see these states for the distinguishable model
+        % as we force one particle to be in each well.
         This makes the system split up into two distinguishable subsystems
         that we label $L$ and $R$ with one particle in each subsystem.
         In order to distinguish these systems from one another in the
         two-particle picture we will construct two disjoint single-particle
         basis sets $\qty{\phi^{L}_{i}}_{i = 1}^{N_L}$ and
         $\qty{\phi^{R}_{i}}_{i = 1}^{N_R}$, where
-        $\braket{\phi^{A}_{i}}{\phi^{B}_{j}} = \delta^{AB} \delta_{ij}$.
+        $\braket{\phi^{A}_{i}}{\phi^{B}_{j}} = \delta^{AB} \delta_{ij}$
+        \footnote{
+            It is worth pointing out that we will not see any products
+            between states in different wells.
+            We can in this problem think of the two basis sets as living in
+            two different Hilbert spaces as would be done for e.g., the
+            Jaynes-Cummings systems where there are no overlap elements
+            between the photonic and the electronic states.
+        }.
         Using the finite-difference approach described above we can set up this
         basis in two different ways.
         The first is to diagonalize the full one-body Hamiltonian
@@ -268,16 +284,18 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         eigenstates will split up into two disjoint sets, where
         $v^{L}(x) \phi^{R}(x) = v^{R}(x) \phi^{L}(x) = 0$.
         % TODO: This condition should be tested explicitly.
+        % TODO: Add a plot of this.
         We can then construct two one-body Hamiltonian operators given
         by
         \begin{align*}
             h^{A}(x) \equiv -\frac{1}{2} \dv[2]{}{x} + v^{A}(x),
         \end{align*}
-        which we can separately diagonalize, and construct a set of
+        that we can separately diagonalize, and construct a set of
         single-particle eigenpairs for each well.
         For the potential wells we describe both approaches will give the
         same eigenpairs to numerical precision.
         % TODO: This should be backed up, and formulated a little differently.
+        % Perhaps included in a supplemental material?
         The two sets of matrix elements for the one-body Hamiltonian will
         then be
         \begin{align*}
@@ -291,63 +309,73 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         that they share no overlap (hence, $\delta^{AB}$), and as they
         are eigenstates (hence, $\delta_{ij}$).
 
-        For the full many-body system we need the matrix elements of the
-        soft-Coulomb interaction operator $u(x_1, x_2)$ from
-        equation \eqref{eq:soft-coulomb}.
-        As we are using a finite-difference basis set, we will compute the matrix
-        elements using numerical integration.
-        That is, we compute the matrix elements (for a general basis of
-        single-particle states $\qty{\psi_i}$)
-        \begin{align*}
-            u_{ij, kl}
-            &\equiv \mel{\psi_i\psi_j}{\hat{u}}{\psi_k\psi_l}
-            \\
-            &= \int\dd{x_1} \dd{x_2}
-            \psi_i^{*}(x_1)\psi_j^{*}(x_2)u(x_1, x_2)
-            \psi_k(x_1)\psi_l(x_2),
-        \end{align*}
-        by the use of the trapezoidal rule integrating over $x_2$ first.
-        We construct the matrix elements $W_{ij}(x)$ given by
-        \begin{align*}
-            W_{ij}(x)
-            = \int \dd{y} \psi^{*}_i(y) u(x, y) \psi_j(y),
-        \end{align*}
-        and use this to compute the two-body matrix elements from
-        \begin{align*}
-            u_{ij, kl}
-            = \int \dd{x_1} \psi^{*}_{i}(x_1) W_{jl}(x_1) \psi_k(x_1).
-        \end{align*}
-   
 
     \subsection{Describing the two-body problem}
         Due to there only being two particles we will solve the full problem
         using exact diagonalization \footnote{
             By ``exact'' we here mean that the solution is exact within the
             truncated, approximate, finite-difference basis set.
-        }.
-        The wave function ansatz we will use is given by
+        }, often denoted the \emph{full configuration interaction} method
+        in electronic structure theory \cite{the-pink-book}.
+        The wave function ansatz is then given by
         \begin{align*}
             \ket*{\Psi_I}
-            &= C_{JI} \ket*{\Phi_J},
+            &= C_{kl, I} \ket*{\phi^{L}_k \phi^{R}_l}
+            \equiv C_{kl, I}
+            \ket*{\phi^{L}_k} \otimes \ket*{\phi^{R}_l},
         \end{align*}
-        where $\ket*{\Phi_I}$ is a Slater determinant to ensure that the wave
-        function is fully anti symmetric.
-        A two-body Slater determinant is given by
+        where no symmetry is assumed for the wave function, and the index
+        $I = (i, j)$ is a compound index denoting which excited two-body
+        state we are looking at.
+        We adopt the notation $\bra*{\phi^L_i \phi^R_j}
+        = \bra*{\phi^L_i} \otimes \bra*{\phi^R_j}
+        \equiv \ket*{\phi^L_i \phi^R_j}^{\dagger}$.
+        This should be contrasted with the conventional way of doing full
+        configuration interaction in electronic structure theory by using
+        a linear combination of Slater determinants as the electrons are
+        indistinguishable \cite{the-pink-book}.
+
+        For the full many-body system we need the matrix elements of the
+        soft-Coulomb interaction operator $u(x_1, x_2)$ from
+        equation \eqref{eq:soft-coulomb}.
+        As we are using a finite-difference basis set, we will compute the matrix
+        elements using numerical integration.
+        That is, we compute the matrix elements
         \begin{align*}
-            \ket*{\Phi_I}
-            = \frac{1}{\sqrt{2}} \qty(
-                \ket*{\psi_i \psi_j}
-                - \ket*{\psi_j \psi_i}
-            ),
+            u_{ij, kl}
+            &\equiv \mel*{\phi^L_i\phi^R_j}{\hat{u}}{\phi^L_k\phi^R_l}
+            \\
+            &= \int\dd{x_1} \dd{x_2}
+            {\phi^L_i}^{*}(x_1) {\phi^R_j}^{*}(x_2)
+            u(x_1, x_2)
+            \phi^L_k(x_1)\phi^R_l(x_2),
         \end{align*}
-        where $I \mapsto (i, j)$ is a compound index with $i < j$.
-        For $i = j$ the determinant disappears, and
-        $\ket{\Phi_{ij}} = - \ket{\Phi_{ji}}$.
+        by the use of the trapezoidal rule integrating over $x_2$ first.
+        This entails to constructing the matrix elements $W_{ij}(x)$
+        given by
+        \begin{align*}
+            W_{ij}(x)
+            = \int \dd{y} {\phi^R_i}^{*}(y) u(x, y) \phi^R_j(y),
+        \end{align*}
+        and use this to compute the two-body matrix elements from
+        \begin{align*}
+            u_{ij, kl}
+            = \int \dd{x_1} {\phi^{L}_{i}}^{*}(x_1)
+            W_{jl}(x_1) \phi^L_k(x_1),
+        \end{align*}
+        where we note in passing that all the single-particle eigenstates
+        are real.
+        Furthermore, the choice of constructing $W_{ij}(x)$ by integrating
+        first over $x_2$, i.e., the right well, is completely arbitrary.
+        Integrating over the left well first, and then the right well gives
+        exactly the same matrix elements $u_{ij, kl}$ due to the symmetry
+        of the Coulomb interaction.
+
         Inserting the wave function ansatz into the time-independent Schrödinger
-        equation, and projecting onto a Slater determinant $\bra*{\Phi_I}$ we
-        get
+        equation, and projecting onto a two-body state
+        $\bra*{\phi^L_i \phi^R_j}$ we get
         \begin{align*}
-            \mel*{\Phi_I}{\hat{H}}{\Psi_J}
+            \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Psi_I}
             = H_{IK} C_{KJ}
             = S_{IK} C_{KJ} E_{J},
         \end{align*}
@@ -468,6 +496,9 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
     \subsection{Measuring the degree of entanglement}
         % TODO: Describe the one-body density
         % TODO: Describe the reduced density operators
+        % TODO: Describe how measurement is performed using the reduced density
+        % operators.
+        % We can compute the expectation value of the energy in the subsystems.
         % TODO: Describe the avoided crossing
 
  
@@ -478,7 +509,7 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
 % to the avoided crossing.
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure2.pdf}
-\caption{\label{fig3} (a) Figure caption.}
+\caption{\label{fig2} (a) Figure caption.}
 \end{figure}
 
 \section{Results and Discussion} % all of us
