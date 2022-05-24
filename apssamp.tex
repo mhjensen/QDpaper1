@@ -259,6 +259,8 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
             Jaynes-Cummings systems where there are no overlap elements
             between the photonic and the electronic states.
         }.
+        % TODO: Are the single-particle basis states the computational basis
+        % elements?
         Using the finite-difference approach described above we can set up this
         basis in two different ways.
         The first is to diagonalize the full one-body Hamiltonian
@@ -320,13 +322,15 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         The wave function ansatz is then given by
         \begin{align*}
             \ket*{\Psi_I}
-            &= C_{kl, I} \ket*{\phi^{L}_k \phi^{R}_l}
-            \equiv C_{kl, I}
-            \ket*{\phi^{L}_k} \otimes \ket*{\phi^{R}_l},
+            &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R} C_{kl, I}
+            \ket*{\phi^{L}_k \phi^{R}_l},
         \end{align*}
         where no symmetry is assumed for the wave function, and the index
-        $I = (i, j)$ is a compound index denoting which excited two-body
+        $I = (i, j)$ is a compound index denoting the excited two-body
         state we are looking at.
+        We denote the two-particle product state as $\ket*{\phi^L_i \phi^R_j}
+        \equiv \ket*{\phi^L_i} \otimes \ket*{\phi^R_j}$.
+        There will be a total of $N_L N_R$ eigenstates $\ket*{\Psi_I}$.
         We adopt the notation $\bra*{\phi^L_i \phi^R_j}
         = \bra*{\phi^L_i} \otimes \bra*{\phi^R_j}
         \equiv \ket*{\phi^L_i \phi^R_j}^{\dagger}$.
@@ -341,15 +345,19 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         As we are using a finite-difference basis set, we will compute the matrix
         elements using numerical integration.
         That is, we compute the matrix elements
-        \begin{align*}
+        \begin{align}
             u_{ij, kl}
             &\equiv \mel*{\phi^L_i\phi^R_j}{\hat{u}}{\phi^L_k\phi^R_l}
             \\
             &= \int\dd{x_1} \dd{x_2}
             {\phi^L_i}^{*}(x_1) {\phi^R_j}^{*}(x_2)
+            \nonumber \\
+            &\qquad
+            \times
             u(x_1, x_2)
             \phi^L_k(x_1)\phi^R_l(x_2),
-        \end{align*}
+            \label{eq:two-body-coulomb}
+        \end{align}
         by the use of the trapezoidal rule integrating over $x_2$ first.
         This entails to constructing the matrix elements $W_{ij}(x)$
         given by
@@ -375,99 +383,55 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         equation, and projecting onto a two-body state
         $\bra*{\phi^L_i \phi^R_j}$ we get
         \begin{align*}
-            \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Psi_I}
-            = H_{IK} C_{KJ}
-            = S_{IK} C_{KJ} E_{J},
+            \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Psi_K}
+             % &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R}
+             % \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\phi^L_k \phi^R_l}
+             % C_{kl, K}
+             % \\
+            &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R}
+            H_{ij, kl} C_{kl, K}
+            = S_{ij, kl} C_{kl, K} E_{K},
         \end{align*}
-        where $H_{IK} \equiv \mel*{\Phi_I}{\hat{H}}{\Phi_K}$ are the matrix
-        elements of the Hamiltonian in the Slater determinant basis, and
-        $S_{IK} = \braket*{\Phi_I}{\Phi_K}$ are the overlap matrix elements
-        between two Slater determinants.
+        where $H_{ij, kl} \equiv \mel*{\phi^L_i \phi^R_j}{\hat{H}}{
+        \phi^L_k \phi^R_l}$ are the matrix elements of the Hamiltonian in
+        the product basis, and $S_{ij, kl} = \braket*{
+        \phi^L_i \phi^R_j}{\phi^L_k \phi^R_l} = \delta_{ik} \delta_{jl}$ are
+        the overlap matrix elements between two two-body states.
         Solving this generalized eigenvalue equation gives us the
-        coefficients $C_{KJ}$ where the columns correspond to the
-        eigenstate $\ket*{\Psi_J}$, and the eigenenergies $E_J$.
-        The matrix elements of the Hamiltonian can be expressed as
-        \begin{align*}
-            H_{IK}
-            &= \frac{1}{2} \qty(
-                H_{ij, kl}
-                - H_{ij, lk}
-                - H_{ji, kl}
-                + H_{ji, lk}
-            ),
-        \end{align*}
-        where $H_{ij, kl} \equiv \mel*{\psi_i \psi_j}{\hat{H}}{\psi_k \psi_l}$
-        are the matrix elements of the Hamiltonian in the single-particle
-        product basis $\ket*{\psi_i \psi_j} \equiv \ket*{\psi_i} \otimes
-        \ket*{\psi_j}$.
+        coefficients $C_{ij, K}$ where the columns correspond to the
+        eigenstates $\ket*{\Psi_K}$, and the eigenenergies $E_K$.
         As discussed in the previous section we know that the one-body Hamiltonian
         will split up into two disjoint operators; one for the left-well and the
         other for the right-well.
         We can write the one-body Hamiltonian as $\hat{h} = \hat{h}^L \otimes \hat{1}
         + \hat{1} \otimes \hat{h}^{R}$.
-        From the orthonormality condition of the two sets of eigenstates we can
-        then see that
-        \begin{align*}
-            h^{AB, CD}_{ij, kl}
-            &= \mel*{\phi^A_i \phi^B_j}{\hat{h}}{\phi^C_k \phi^D_l}
-            \\
-            &= \mel*{\phi^{A}_i}{\hat{h}^L}{\phi^C_k}
-            \braket*{\phi^B_j}{\phi^D_l}
-            + \braket*{\phi^A_i}{\phi^C_k}
-            \mel*{\phi^B_j}{\hat{h}^R}{\phi^{D}_l}
-            \\
-            &= \delta^{AC} \delta^{CL}
-            \delta_{ik} \epsilon^{L}_k
-            \delta^{BD} \delta_{jl}
-            + \delta^{AC} \delta_{ik}
-            \delta^{BD} \delta^{DR}
-            \delta_{jl} \epsilon^{R}_l
-            \\
-            &= \delta^{AC} \delta^{BD}
-            \delta_{ik} \delta_{jl} \qty(
-                \delta^{CL} \epsilon^L_k
-                + \delta^{DR} \epsilon^{R}_l
+        From the orthonormality of the two sets of eigenstates we get
+        \begin{align}
+            h_{ij, kl}
+            &= \mel*{\phi^L_i \phi^R_j}{\hat{h}}{\phi^L_k \phi^R_l}
+            % \\
+            % &= \mel*{\phi^{L}_i}{\hat{h}^L}{\phi^L_k}
+            % \braket*{\phi^R_j}{\phi^R_l}
+            % + \braket*{\phi^L_i}{\phi^L_k}
+            % \mel*{\phi^R_j}{\hat{h}^R}{\phi^{R}_l}
+            % \\
+            % &=
+            % \delta_{ik} \epsilon^{L}_k
+            % \delta_{jl}
+            % + \delta_{ik}
+            % \delta_{jl} \epsilon^{R}_l
+            = \delta_{ik} \delta_{jl} \qty(
+                \epsilon^L_k
+                + \epsilon^{R}_l
             ).
-        \end{align*}
-        For the matrix elements of the Coulomb interaction no such splitting will
-        occur.
-        However, as we are considering the case where there is one electron in each
-        well, and no tunneling will occur for the energies we are looking at, no
-        Slater determinants with both single-particle states from the same well will
-        contribute.
-        That is, the only non-zero elements we will need are
-        \begin{align*}
-            u^{AB, CD}_{ij, kl}
-            &= \mel*{\phi^A_i \phi^B_j}{\hat{u}}{\phi^C_k \phi^D_l}
-            \\
-            \quad
-            &= \delta^{AC} \delta^{BD}
-            u^{AB, AB}_{ij, kl},
-        \end{align*}
-        where we note the symmetry $u^{AB, CD}_{ij, kl} = u^{BA, DC}_{ji, lk}$.
-
-        From the matrix elements of the one-body Hamiltonian and the Coulomb operator
-        we can thus see that the model reduces to a distinguishable model as the
-        Hamiltonian matrix elements are given by $H^{AB, CD}_{ij, kl} = \delta^{AC}
-        \delta^{BD} H^{AB, AB}_{ij, kl}$, and $H^{AB, AB}_{ij, kl}
-        = H^{BA, BA}_{ji, lk}$.
-        This means that the matrix elements of the Hamiltonian in the Slater
-        determinant basis reduces to
-        \begin{align*}
-            H_{IK} = H^{LR, LR}_{ij, kl},
-        \end{align*}
-        where the Slater determinants are chosen to be
-        \begin{align*}
-            \ket*{\Phi_{I}}
-            = \frac{1}{2} \qty(
-                \ket*{\phi^L_i \phi^R_j}
-                - \ket*{\phi^R_j \phi^L_i}
-            ).
-        \end{align*}
-        % TODO: Rewrite this section using the distinguishable model.
-        % The results should also be done in the distinguishable model.
-        Having diagonalized the Hamiltonian we get the coefficients for
-        the eigenstates in the Slater determinant basis.
+            \label{eq:one-body-hamiltonian}
+        \end{align}
+        From the matrix elements of the one-body Hamiltonian in
+        \eqref{eq:one-body-hamiltonian} and the Coulomb operator
+        \eqref{eq:two-body-coulomb} we can construct the full Hamiltonian
+        to be $H_{ij, kl} = h_{ij, kl} + u_{ij, kl}$.
+        We then proceed to diagonalize the matrix, and find the coefficients
+        $C_{kl, K}$ and the corresponding eigenenergies $E_K$.
 
     \subsection{Spin considerations}
         We have so far in this discussion ignored the spin component of the electrons.
@@ -483,19 +447,50 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         (which is the only case we consider in this work),
         and we can fully factorize out the spin-part of the problem.
 
-        % TODO: This paragraph should be removed at some point in time.
-        In practice however the two wells will be so deep, and the Coulomb interaction
-        so strong that there will be no tunneling between the two wells for a large
-        number of bound states.
-        Furthermore, by restricting our view to the spatial component and ignoring spin
-        we get a distinguishable model as an electron trapped in one of the wells will
-        remain in the same well and we can label each sub system.
-        This means that there is no need to treat the particles as fermions.
-        % Note, perhaps make a choice of using a distinguishable model or not?
 
     \subsection{Measuring the degree of entanglement}
+        % TODO: Why do we need entanglement?
+        % Add reference to the quantum computing books.
+        As we have diagonalized the Hamiltonian and found the energy spectrum, we
+        in principle have all the knowledge that can be obtained from the system.
+        We also work in a zero-temperature regime with no noise from the outside
+        world.
+        This lets us create a pure state from the two-particle wave function.
+        % TODO: Which states are we interested in measuring entanglement for?
+
+        For a given two-body pure state $\ket*{\Psi}$ we can construct the
+        corresponding density operator
+        \begin{align*}
+            \hat{\rho} = \dyad*{\Psi}{\Psi}
+            = C_{ij} C^{*}_{kl} \dyad*{\phi^L_i \phi^R_j}{
+                \phi^L_k \phi^R_l
+            },
+        \end{align*}
+        where $C_{ij}$ are the coefficients \footnote{
+            Note that these coefficients are not necessarily the eigenstates
+            of the full two-body Hamiltonian.
+            We are free to choose whatever state we wish as long as the states
+            are normalized.
+        }.
+        A measure of entanglement can be achieved from the von Neumann entropy.
+        We then need to construct the reduced density operators for each
+        subsystem $L$ and $R$.
+        They are given by
+        \begin{gather*}
+            \hat{\rho}^L
+            = \tr_R \! \qty(\hat{\rho})
+            = C_{ij} C^{*}_{kj} \dyad*{\phi^L_i}{\phi^L_k},
+            \\
+            \hat{\rho}^R
+            = \tr_{L} \! \qty(\hat{\rho})
+            = C_{ij} C^{*}_{il} \dyad*{\phi^R_j}{\phi^R_l},
+        \end{gather*}
+        where we have used that the single-particle states in each well are
+        orthonormal.
+        As the total state is a pure state, we know that the reduced density
+        operators must have the same spectrum (the von Neumann entropies must
+        cancel perfectly).
         % TODO: Describe the one-body density
-        % TODO: Describe the reduced density operators
         % TODO: Describe how measurement is performed using the reduced density
         % operators.
         % We can compute the expectation value of the energy in the subsystems.
