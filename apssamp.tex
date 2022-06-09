@@ -56,10 +56,10 @@
 \author{Niyaz Beysengulov}
 \email{beysengu@msu.edu}
 \affiliation{Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}
+\author{Jonas Boym Flaten, Stian Dysthe Bilek, and Øyvind Sigmundson Schøyen}
+\affiliation{Department of Physics and Center for Computing in Science Education, University of Oslo, N-0316 Oslo, Norway}
 \author{Håkon Emil Kristiansen}
 \affiliation{Department of Chemistry and Hylleraas Center for Quantum Molecular Sciences, University of Oslo, N-0316 Oslo, Norway}
-\author{Øyvind Sigmundson Schøyen}
-\affiliation{Department of Physics and Center for Computing in Science Education, University of Oslo, N-0316 Oslo, Norway}
 \author{Zachary Stewart}
 \affiliation{Department of Chemistry, Michigan State University, East Lansing, MI 48824, USA}
 \author{Jared Weidman}
@@ -150,7 +150,181 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
 \caption{\label{fig1} (a) Figure caption. \textcolor{blue}{Niyaz will modify Fig. 1a to include control and readout resonators.}}
 \end{figure}
 
-\section{Computational Methods} % Hakon, Oyvind
+\section{Interaction driven entanglement}
+
+In order to study the importance of level avoided crossings and
+entanglement, we study first a simple two-level system. Thereafter we
+extend our level-crossing model to a four-level system which can be
+interpreted as composed of two separate (not necessarily identical)
+subsystems.
+
+We let our Hamiltonian depend linearly on a strength parameter $z$
+\[
+       H=H_0+\lambda H_\mathrm{I},
+\]
+
+with $\lambda \in [0,1]$, where the limits $\lambda=0$ and $\lambda=1$
+represent the non-interacting (or unperturbed) and fully interacting
+system, respectively.  The model is an eigenvalue problem with only
+two available states, which we label $\vert 0\rangle$ and $\vert
+1\rangle$, respectively. Below we will let state $\vert 0 \rangle$
+represent the lowest state (often referred to as model-space state)
+eigenvalue whereas state $\vert 1\rangle$ represents the eigenvalue of
+the excluded space.  The non-interacting solutions to our problem are
+
+\[
+       H_0\vert 0 \rangle =\epsilon_0\vert 0 \rangle,
+\]
+and
+\[
+       H_0\vert 1\rangle =\epsilon_1\vert 1\rangle,
+\]
+
+with $\epsilon_0 < \epsilon_1$. We label the off-diagonal matrix
+elements $X$, while $X_0=\langle 0 \vert H_I\vert 0 \rangle$ and
+$X_1=\langle 1 \vert H_1\vert 1 \rangle$.  The Hamiltonian matrix to be diagonalized is then given by
+\[
+\left(\begin{array}{cc}\epsilon_0+\lambda X_0 &\lambda X \\
+\lambda X &\epsilon_1+\lambda X_1 \end{array}\right).
+\]
+
+In the results below we set the parameters $\epsilon_0=0$,
+$\epsilon_1=4$, $X_0=-X_1=3$ and $X=0.2$.  This eigenvalue problem can
+easily be rewritten in terms of the standard Pauli matrices.  The
+non-interacting solutions represent our computational basis.
+Pertinent to our choice of parameters, is that at $\lambda\geq 2/3$,
+the lowest eigenstate is dominated by $\vert 1\rangle$ while the upper
+is $\vert 0 \rangle$. At $\lambda=1$ the $\vert 0 \rangle$ mixing of
+the lowest eigenvalue is $1\%$ while for $\lambda\leq 2/3$ we have a
+$\vert 0 \rangle$ component of more than $90\%$.  The character of the
+eigenvectors has therefore been interchanged when passing $z=2/3$. The
+value of the parameter $X$ represents the strength of the coupling
+between the model space and the excluded space.  
+% add figure here
+
+This  model exhibits a simple level crossing where the
+composition of the final interacting states change character as we
+gradually switch on the interaction.  In order to study how
+entanglement relates to level crossing and the main results of our
+investigations, we extend the simple two-level system to a four level
+system. This system can be thought of as composed of two subsystems
+$A$ and $B$. Each subsystem has computational basis states
+
+\[
+\vert 0\rangle_{\mathrm{A,B}}=\begin{bmatrix} 1 & 0\end{bmatrix}^T \hspace{1cm} \vert 1\rangle_{\mathrm{A,B}}=\begin{bmatrix} 0 & 1\end{bmatrix}^T.
+\]
+
+The subsystems could represent single particles or composite many-particle systems of a given symmetry.
+This leads to the many-body computational basis states
+\[
+\vert 00\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 1 & 0 & 0 &0\end{bmatrix}^T,
+\]
+and
+\[
+\vert 10\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 1 & 0 &0\end{bmatrix}^T,
+\]
+and
+\[
+\vert 01\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 1 &0\end{bmatrix}^T,
+\]
+and finally
+\[
+\vert 11\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 0 &1\end{bmatrix}^T.
+\]
+These computational basis states define also the eigenstates of the non-interacting  Hamiltonian
+\[
+H_0\vert 00 \rangle = \epsilon_{00}\vert 00 \rangle,
+\]
+\[
+H_0\vert 10 \rangle = \epsilon_{10}\vert 10 \rangle,
+\]
+\[
+H_0\vert 01 \rangle = \epsilon_{01}\vert 01 \rangle,
+\]
+and
+\[
+H_0\vert 11 \rangle = \epsilon_{11}\vert 11 \rangle.
+\]
+The interacting part of the Hamiltonian $H_{\mathrm{I}}$ is given by the tensor product of two $\sigma_x$ and $\sigma_z$  matrices, respectively, that is
+\[
+H_{\mathrm{I}}=H_x\sigma_x\otimes\sigma_x+H_z\sigma_z\otimes\sigma_z,
+\]
+
+where $H_x$ and $H_z$ are interaction strength parameters. Our final Hamiltonian matrix is given by
+\[
+\bm{H}=\begin{bmatrix} \epsilon_{00}+H_z & 0 & 0 & H_x \\
+                       0  & \epsilon_{10}-H_z & H_x & 0 \\
+                       0 & H_x & \epsilon_{01}+H_z & 0 \\
+                       H_x & 0 & 0 & \epsilon_{11} -H_z \end{bmatrix}.
+\]
+
+The four eigenstates of the above Hamiltonian matrix can in turn be used to
+define density matrices. As an example, the density matrix of the
+first eigenstate (lowest energy $E_0$) $\Psi_0$ is
+
+\[
+\rho_0=\left(\alpha_{00}\vert 00 \rangle\langle 00\vert+\alpha_{10}\vert 10 \rangle\langle 10\vert+\alpha_{01}\vert 01 \rangle\langle 01\vert+\alpha_{11}\vert 11\
+ \rangle\langle 11\vert\right),
+\]
+where the coefficients $\alpha_{ij}$ are the eigenvector coefficients
+resulting from the solution of the above eigenvalue problem.  We can
+then in turn define the density matrix for the subsets $A$ or $B$ as
+
+\[
+\rho_A=\mathrm{Tr}_B(\rho_{0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{B}+\langle 1 \vert \rho_{0} \vert 1\rangle_{B},
+\]
+or
+\[
+\rho_B=\mathrm{Tr}_A(\rho_{\Psi_0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{A}+\langle 1 \vert \rho_{0} \vert 1\rangle_{A}.
+\]
+
+The density matrices for these subsets can be used to compute the
+so-called von Neumann entropy, which is one of the possible measures
+of entanglement. A pure state has entropy equal zero while entangled
+state have an entropy larger than zero. The von Neumann entropy is
+defined as
+\[
+S(A,B)=-\mathrm{Tr}\left(\rho_{A,B}\log_2 (\rho_{A,B})\right).
+\]
+The example here shows the above von Neumann entropy based on the
+density matrix for the lowest many-body state. We see clearly a jump
+in the entropy around the point where we have a level crossing. At
+interaction strength $\lambda=0$ we have many-body states purely
+defined by their computational basis states. As we switch on the
+interaction strength, we obtain an increased degree of mixing and the
+entropy increases till we reach the level crossing point where we see
+an additional and sudden increase in entropy. Similar behaviors are
+observed for the other states. The most important result from this
+example is that entanglement is driven by the Hamiltonian itself and
+the strength of the interaction matrix elements and the
+non-interacting energies.
+
+% add figs here
+
+With these introductory examples, we are now in the position where we
+can start to interpret and model realistic interacting many-electron
+systems in terms of the strength of the Coulomb interaction and the
+shapes of the potential well. Our specific system is composed of two
+potential wells with one fermion (electrons in our case) trapped in
+each well.  Each potential well can sustain a certain number of bound
+single-particle states and defines our subsystems $A$ and $B$. The
+non-interacting part of the Hamiltonian is given by the mere addition
+of the single-particle energies from each repsective well (make figure
+with labels A and B and single-particle energies).
+
+The eigenstates of the non-interacting Hamiltonian $H_0$ are given by
+various computational basis states with the difference from the above
+simple models that now we have more than two states in each
+subsystem. The depths of the potential wells and their respective
+distances can be tuned in an experimental set up. The theoretical
+calculations presented here can thus serve as a tool which aids in
+finding the optimal parameters in order to study entanglement in a
+many-body environment.
+
+What follows is a description of the theoretical models used to
+simulate the two-electron system. 
+
+\section{Entanglement in quantum dot systems} % Hakon, Oyvind
     As we are studying a model comprised of two electrons restricted to move in a
     one-dimensional external potential we have employed exact diagonalization of the
     two-body Schrödinger equation to solve the problem.
@@ -490,7 +664,11 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
         As the total state is a pure state, we know that the reduced density
         operators must have the same spectrum (the von Neumann entropies must
         cancel perfectly).
-        % TODO: Describe the one-body density
+        In the case where there are indistinguishable particles the one-body
+        density can be used as a replacement for the reduced density matrices
+        of the two subsystems.
+        We can construct the one-body density operator from $\hat{\rho}^1
+        = \hat{\rho}^L + \hat{\rho}^R$.
         % TODO: Describe how measurement is performed using the reduced density
         % operators.
         % We can compute the expectation value of the energy in the subsystems.
