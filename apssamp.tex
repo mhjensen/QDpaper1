@@ -143,11 +143,13 @@ The prototype system for measurements of two electron's in-plane motional state 
             V(x) = \sum_{i=1}^7 \alpha_i(x) V_i,
             \label{eq:trap}
 \end{align}
-where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\ref{fig1}b and $V_i$ are voltages applied to them, and we keep top electrodes at the ground potential. In our scheme the double-well is achieved by providing a negative potential to the central electrode (electrode 4 in Fig.~\ref{fig1}a) with a more positive potentials applied to other electrodes.
+where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\ref{fig1}b and $V_i$ are voltages applied to them, and we keep top electrodes at the ground potential. The coupling constants $\alpha_i$ are calculated by numerically solving Laplace equation for electrostatic potential using Finite Element Modelling techniques. In our scheme the double-well is achieved by providing a negative potential to the central electrode (electrode 4 in Fig.~\ref{fig1}a) with a more positive potentials applied to other electrodes. The particular choice of the applied voltage will be described in a Section IV.
+
+
 
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure1.pdf}
-\caption{\label{fig1} (a) Figure caption. \textcolor{blue}{Niyaz will modify Fig. 1a to include control and readout resonators.}}
+\caption{\label{fig1} (a) Schematic of the microdevice, where two electrons are trapped in a double-well potential created by electrodes 1-7. The read-out is provided by two superconducting resonators dispersively coupled to  electron's in-plane motional states. (b) Coupling constants from each individual electrode beneath the helium layer. (c) The electron's energy in a  double-well electrostatic potential (solid line). Dashed and dot-dashed lines represent the harmonic approximations of left and right wells respectively.}
 \end{figure}
 
 \section{Interaction driven entanglement}
@@ -673,6 +675,22 @@ simulate the two-electron system.
         % operators.
         % We can compute the expectation value of the energy in the subsystems.
         % TODO: Describe the avoided crossing
+
+
+    \subsection{Constructing the computational basis states}
+        When working with quantum computers we need a set of computational
+        basis states, commonly denoted $\ket*{0}$ and $\ket*{1}$.
+        In a two-qubit quantum computer we wish to get the four computational
+        basis states $\ket*{00}$, $\ket*{01}$, $\ket*{10}$, and $\ket*{11}$,
+        where $\ket*{ij} = \ket*{i} \otimes \ket*{j}$ denotes product states.
+        From the discussion above it is tempting to choose the two lowest
+        single-particle states $\ket*{\phi^{A}_i}$ in each well as our
+        computational basis states.
+        However, this will not be correct in the strongly interacting system
+        we are looking at.
+        Granted, the states are separable in each well, but the two-body
+        wave function $\ket*{\Psi_I}$ will in general not be a product state
+        of the single-particle states.
 
  
 
