@@ -136,21 +136,23 @@ Our work's place in this field
 
 \section{Device prototype} % Niyaz writes this
 %general information about electrons on helium
-Surface state electrons (SSE) 'floating' above liquid helium originates from quantization of electron's perpendicular to the surface motion in a trapping potential formed by attractive force from image charge and a large $\sim$ 1 eV barrier at the liquid-vacuum interface. At low temperatures the SSE are trapped in the lowest Rydberg state for vertical motion some 11 nm above the helium surface, which is perfectly clean and has a permittivity close to that of vacuum. The weak interaction with enviorment, which is mainly governed by interaction with quantized surface capillary waves (ripplons) and bulk phonons, ensures long coherence times - a vital ingredient for any qubit platform. SSE's in-plane motion can be further localized by using microdevices on the length scales approaching the interelectron separation (at the order of one micron).
+\textit{Niyaz / add references to microdevice works, eNe} Surface state electrons (SSE) 'floating' above liquid helium originates from quantization of electron's perpendicular to the surface motion in a trapping potential formed by attractive force from image charge and a large $\sim$ 1 eV barrier at the liquid-vacuum interface. At low temperatures the SSE are trapped in the lowest Rydberg state for vertical motion some 11 nm above the helium surface, which is perfectly clean and has a permittivity close to that of vacuum. The weak interaction with enviorment, which is mainly governed by interaction with quantized surface capillary waves (ripplons) and bulk phonons, ensures long coherence times - a vital ingredient for any qubit platform. SSE's in-plane motion can be further localized by using microdevices on the length scales approaching the interelectron separation (at the order of one micron).
 
-The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
+\textit{Niyaz / Need to rewrite this section} The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
 \begin{align}
             V(x) = \sum_{i=1}^7 \alpha_i(x) V_i,
             \label{eq:trap}
 \end{align}
 where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\ref{fig1}b and $V_i$ are voltages applied to them, and we keep top electrodes at the ground potential. The coupling constants $\alpha_i$ are calculated by numerically solving Laplace equation for electrostatic potential using Finite Element Modelling techniques. In our scheme the double-well is achieved by providing a negative potential to the central electrode (electrode 4 in Fig.~\ref{fig1}a) with a more positive potentials applied to other electrodes. The particular choice of the applied voltage will be described in a Section IV.
 
-
+\textit{Niyaz / Introduce hamiltonian}
 
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure1.pdf}
 \caption{\label{fig1} (a) Schematic of the microdevice, where two electrons are trapped in a double-well potential created by electrodes 1-7. The read-out is provided by two superconducting resonators dispersively coupled to  electron's in-plane motional states. (b) Coupling constants from each individual electrode beneath the helium layer. (c) The electron's energy in a  double-well electrostatic potential (solid line). Dashed and dot-dashed lines represent the harmonic approximations of left and right wells respectively.}
 \end{figure}
+
+\textit{Niyaz / Readout scheme with superconducting resonator, dispersive readout, estimate coupling constants}
 
 \section{Interaction driven entanglement}
 
@@ -638,7 +640,9 @@ simulate the two-electron system.
         corresponding density operator
         \begin{align*}
             \hat{\rho} = \dyad*{\Psi}{\Psi}
-            = C_{ij} C^{*}_{kl} \dyad*{\phi^L_i \phi^R_j}{
+            = \sum_{i, k = 1}^{N_L}
+            \sum_{j, l = 1}^{N_R}
+            C_{ij} C^{*}_{kl} \dyad*{\phi^L_i \phi^R_j}{
                 \phi^L_k \phi^R_l
             },
         \end{align*}
@@ -655,11 +659,13 @@ simulate the two-electron system.
         \begin{gather*}
             \hat{\rho}^L
             = \tr_R \! \qty(\hat{\rho})
-            = C_{ij} C^{*}_{kj} \dyad*{\phi^L_i}{\phi^L_k},
+            = \sum_{i, k = 1}^{N_L} \sum_{j = 1}^{N_R}
+            C_{ij} C^{*}_{kj} \dyad*{\phi^L_i}{\phi^L_k},
             \\
             \hat{\rho}^R
             = \tr_{L} \! \qty(\hat{\rho})
-            = C_{ij} C^{*}_{il} \dyad*{\phi^R_j}{\phi^R_l},
+            = \sum_{i = 1}^{N_L} \sum_{j, l = 1}^{N_R}
+            C_{ij} C^{*}_{il} \dyad*{\phi^R_j}{\phi^R_l},
         \end{gather*}
         where we have used that the single-particle states in each well are
         orthonormal.
@@ -705,6 +711,10 @@ simulate the two-electron system.
 
 \section{Results and Discussion} % all of us
 
+\textit{Niyaz / Discussing possible two-qubit entanglement gates}
+
+% TODO: various gate description: cross-resonance, c-PHASE gates and estimate the typical 'performance' quantities from final avioded crossing plots 
+
 \begin{figure}
 \includegraphics[width=0.49\textwidth]{figure3.pdf}
 \caption{\label{fig3} (a) Figure caption.}
@@ -715,36 +725,6 @@ simulate the two-electron system.
 
 \section{Conclusions} % we can wait to write this one until the end
 
-\section{\label{sec:level1}Problem: Many-level system interacting with EM field}
-
-We start with the following problem in general form: we have a quantum-mechanical system described with Hamiltonian $H_0$ and states $\ket{n}$ being eigenfunctions of $H_0$.
-\begin{equation*}
-H_0 \ket{n} = E_n \ket{n}
-\end{equation*}
-We would like to know how these states evolve in time in the presence of a time-varying electric field. The interaction of quantum systems with electric fields is described by the Hamiltonian $ H_i = - \vb{E}(t) \vb{d}$, where $\vb{E}(t) = \vb{\mathcal{E}}_0 \cos \omega t$ and $\vb{d}$ is the dipole moment of the quantum system. Note, here we use dipole approximation (wavelength of the EM field is much larger than characteristic size of the quantum system wavefunction). The evolution of the quantum wavefunction is governed by Schrodinger equation:
-\begin{equation}
- i \dot{\psi} = H \psi
-\label{eq1}.
-\end{equation}
-where $H = H_0 + H_i$ (note, $\hbar = 1$). We seek the solution in the form $\psi(t) = \sum_n C_n(t) e^{-i E_n t}$. We evolve this solution through Eq.~\ref{eq1} and get the following answer:
-\begin{equation}
- i \dot{C_m} = -\frac{1}{2} \vb{\mathcal{E}}_0 \sum_{\alpha} \sum_{n} C_n e^{i \omega_{mn} t + i \alpha \omega t} \vb{d}_{mn}
-\label{eq2},
-\end{equation}
-\begin{equation}
- \braket{m}{n} = \delta_{mn}, \mel{m}{\vb{d}}{n} = \vb{d}_{mn}, E_m - E_n = \omega_{mn}
-\end{equation}
-Here we used $\cos \omega t = \frac{1}{2} \sum_{\alpha = \pm} e^{i \alpha \omega t}$. Lets assume the system is in the ground state at $t = 0$, so $C_n(0) = \delta_{n1}$. We integrate Eq.~\ref{eq2} and get an expression:
-\begin{equation}
- C_m = \frac{i}{2} \vb{\mathcal{E}}_0 \sum_{\alpha} \vb{d}_{m1} \frac{e^{i (\omega_{mn} + \alpha \omega) t} - 1}{i (\omega_{m1} + \alpha \omega)} 
-\label{eq3}.
-\end{equation}
-An important condition here is:
-\begin{equation}
-\abs{\frac{\vb{\mathcal{E}}_0 \vb{d}_{m1}}{\omega_{m1} \pm \omega}} \ll 1
-\label{eq4},
-\end{equation}
-which defines the 2-level approximation
 
 \section{Appendix A}
 Description of classical two-body calculation
