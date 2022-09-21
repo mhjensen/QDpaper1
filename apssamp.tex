@@ -138,7 +138,7 @@ Our work's place in this field
 %general information about electrons on helium
 \textit{Niyaz / add references to microdevice works, eNe} Surface state electrons (SSE) 'floating' above liquid helium originates from quantization of electron's perpendicular to the surface motion in a trapping potential formed by attractive force from image charge and a large $\sim$ 1 eV barrier at the liquid-vacuum interface. At low temperatures the SSE are trapped in the lowest Rydberg state for vertical motion some 11 nm above the helium surface, which is perfectly clean and has a permittivity close to that of vacuum. The weak interaction with enviorment, which is mainly governed by interaction with quantized surface capillary waves (ripplons) and bulk phonons, ensures long coherence times - a vital ingredient for any qubit platform. SSE's in-plane motion can be further localized by using microdevices on the length scales approaching the interelectron separation (at the order of one micron).
 
-\textit{Niyaz / Need to rewrite this section} The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
+\textit{Niyaz / Need to rewrite this section, include FEM} The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. Once teh device is filled with helium, a thermionic emission from a tungsted filement located above the helium surface can be used to generate electrons, which will be naturally trapped at the liquid surface under positive bias voltage on the electrode g1-7. We note, that trapping single or two electrons requires a controlled delivery of electrons from a large bath of electrons, which was experimentally demonstrated. For the purpose of the current study we consider a simple gate array which allow a demonstration of entanglement between two electrons. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
 \begin{align}
             V(x) = \sum_{i=1}^7 \alpha_i(x) V_i,
             \label{eq:trap}
@@ -152,7 +152,7 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
 \caption{\label{fig1} (a) Schematic of the microdevice, where two electrons are trapped in a double-well potential created by electrodes 1-7. The read-out is provided by two superconducting resonators dispersively coupled to  electron's in-plane motional states. (b) Coupling constants from each individual electrode beneath the helium layer. (c) The electron's energy in a  double-well electrostatic potential (solid line). Dashed and dot-dashed lines represent the harmonic approximations of left and right wells respectively.}
 \end{figure}
 
-\textit{Niyaz / Readout scheme with superconducting resonator, dispersive readout, estimate coupling constants}
+The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is based on the coupling of motional states to the photons in the superconducting resonator. We estimate the coupling energy to be $g/2 \pi = \langle 1 | d E| 0 \rangle \simeq $. The largest contribution to the decoherence is realized via energy decay into phonons of the liquid helium, which was estimated to be. This allow the realization of the strong coupling regime $g \rangle \Gamma$. Each of the individual electrons coupled to its own cpw $\lambda/4$-resonator with different resonance frequencies. We estimate the crosstalk coupling of the electron to the other resonator to be, so we will ignore this. However this crosstalk will limit the fidelities of the gate and well developed the pulse shaping techniques can be used to mitigate this coupling. In a dispersive regime, realized at the condition, the frequency of the reonators becomes electron state-dependent, which can be measured via transmitted microwave signals through the cpw feedline.
 
 \section{Interaction driven entanglement}
 
@@ -426,8 +426,8 @@ simulate the two-electron system.
         that we label $L$ and $R$ with one particle in each subsystem.
         In order to distinguish these systems from one another in the
         two-particle picture we will construct two disjoint single-particle
-        basis sets $\qty{\phi^{L}_{i}}_{i = 1}^{N_L}$ and
-        $\qty{\phi^{R}_{i}}_{i = 1}^{N_R}$, where
+        basis sets $\qty{\phi^{L}_{i}}_{i = 1}^{N^L}$ and
+        $\qty{\phi^{R}_{i}}_{i = 1}^{N^R}$, where
         $\braket{\phi^{A}_{i}}{\phi^{B}_{j}} = \delta^{AB} \delta_{ij}$
         \footnote{
             It is worth pointing out that we will not see any products
@@ -500,7 +500,7 @@ simulate the two-electron system.
         The wave function ansatz is then given by
         \begin{align*}
             \ket*{\Psi_I}
-            &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R} C_{kl, I}
+            &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
             \ket*{\phi^{L}_k \phi^{R}_l},
         \end{align*}
         where no symmetry is assumed for the wave function, and the index
@@ -508,7 +508,7 @@ simulate the two-electron system.
         state we are looking at.
         We denote the two-particle product state as $\ket*{\phi^L_i \phi^R_j}
         \equiv \ket*{\phi^L_i} \otimes \ket*{\phi^R_j}$.
-        There will be a total of $N_L N_R$ eigenstates $\ket*{\Psi_I}$.
+        There will be a total of $N^L N^R$ eigenstates $\ket*{\Psi_I}$.
         We adopt the notation $\bra*{\phi^L_i \phi^R_j}
         = \bra*{\phi^L_i} \otimes \bra*{\phi^R_j}
         \equiv \ket*{\phi^L_i \phi^R_j}^{\dagger}$.
@@ -562,11 +562,11 @@ simulate the two-electron system.
         $\bra*{\phi^L_i \phi^R_j}$ we get
         \begin{align*}
             \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Psi_K}
-             % &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R}
+             % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
              % \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\phi^L_k \phi^R_l}
              % C_{kl, K}
              % \\
-            &= \sum_{k = 1}^{N_L} \sum_{l = 1}^{N_R}
+            &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
             H_{ij, kl} C_{kl, K}
             = S_{ij, kl} C_{kl, K} E_{K},
         \end{align*}
@@ -640,8 +640,8 @@ simulate the two-electron system.
         corresponding density operator
         \begin{align*}
             \hat{\rho} = \dyad*{\Psi}{\Psi}
-            = \sum_{i, k = 1}^{N_L}
-            \sum_{j, l = 1}^{N_R}
+            = \sum_{i, k = 1}^{N^L}
+            \sum_{j, l = 1}^{N^R}
             C_{ij} C^{*}_{kl} \dyad*{\phi^L_i \phi^R_j}{
                 \phi^L_k \phi^R_l
             },
@@ -659,12 +659,12 @@ simulate the two-electron system.
         \begin{gather*}
             \hat{\rho}^L
             = \tr_R \! \qty(\hat{\rho})
-            = \sum_{i, k = 1}^{N_L} \sum_{j = 1}^{N_R}
+            = \sum_{i, k = 1}^{N^L} \sum_{j = 1}^{N^R}
             C_{ij} C^{*}_{kj} \dyad*{\phi^L_i}{\phi^L_k},
             \\
             \hat{\rho}^R
             = \tr_{L} \! \qty(\hat{\rho})
-            = \sum_{i = 1}^{N_L} \sum_{j, l = 1}^{N_R}
+            = \sum_{i = 1}^{N^L} \sum_{j, l = 1}^{N^R}
             C_{ij} C^{*}_{il} \dyad*{\phi^R_j}{\phi^R_l},
         \end{gather*}
         where we have used that the single-particle states in each well are
@@ -697,6 +697,25 @@ simulate the two-electron system.
         Granted, the states are separable in each well, but the two-body
         wave function $\ket*{\Psi_I}$ will in general not be a product state
         of the single-particle states.
+        This means that the computational basis states will be represented by
+        the reduced density operators $\hat{\rho}^L_I$ and $\hat{\rho}^R_I$,
+        where $I$ denotes the two-body wave function $\ket*{\Psi_I}$ they
+        come from.
+        % Bad phrasing!
+        In principle we could construct a single-particle basis from these
+        reduced density operators, viz.,
+        \begin{align*}
+            \hat{\rho}^L_i \ket*{i^L}
+            = \lambda^L_i \ket*{i^L},
+        \end{align*}
+        where $\qty{\ket*{i^L}}_{i = 1}^{N^R}$ would be the single-particle
+        states that most resemble the ``true'' computational basis states,
+        and the eigenvalues $\lambda^L_i$ represents their occupation
+        in the given two-body eigenstate $\ket*{\Psi_I}$ \footnote{
+            These states closely resembles the \emph{natural orbitals}
+            found by diagonalizing the one-body density operator $\hat{\rho}^1$.
+            % TODO: Cite papers by Löwdin if this should be included.
+        }.
 
  
 
