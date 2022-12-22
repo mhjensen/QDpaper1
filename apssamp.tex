@@ -1,4 +1,4 @@
-    % ****** Start of file apssamp.tex ******
+        % ****** Start of file apssamp.tex ******
 %
 %   This file is part of the APS files in the REVTeX 4.2 distribution.
 %   Version 4.2a of REVTeX, December 2014
@@ -47,30 +47,27 @@
 %\newcommand\bra[1]{\left| #1 \right \rangle}
 %\newcommand\ket[1]{\left \langle #1 \right |}
 
+\newcommand{\may}[1]{\textcolor{orange}{#1}}
+    % for marking stuff to be edited or verified later
+
 \begin{document}
 
 \preprint{APS/123-QED}
 
 \title{Coulomb interaction driven entanglement of electrons on helium}
 
-\author{Niyaz Beysengulov}
+\author{Niyaz Beysengulov and Johannes Pollanen}
 \email{beysengu@msu.edu}
 \affiliation{Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}
-\author{Jonas Boym Flaten, Stian Dysthe Bilek, and Øyvind Sigmundson Schøyen}
-\affiliation{Department of Physics and Center for Computing in Science Education, University of Oslo, N-0316 Oslo, Norway}
+\author{Øyvind Sigmundson Schøyen, Stian Dysthe Bilek, Jonas Boym Flaten, and Oskar Leinonen}
+\affiliation{Department of Physics, University of Oslo, N-0316 Oslo, Norway}
 \author{Håkon Emil Kristiansen}
 \affiliation{Department of Chemistry and Hylleraas Center for Quantum Molecular Sciences, University of Oslo, N-0316 Oslo, Norway}
-\author{Zachary Stewart}
-\affiliation{Department of Chemistry, Michigan State University, East Lansing, MI 48824, USA}
-\author{Jared Weidman}
+\author{Zachary Stewart, Jared Weidman, and Angela Wilson}
 \affiliation{Department of Chemistry, Michigan State University, East Lansing, MI 48824, USA}
 \author{Morten Hjorth-Jensen}
 \affiliation{Facility for Rare Isotope Beams and Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}
 \affiliation{Department of Physics and Center for Computing in Science Education, University of Oslo, N-0316 Oslo, Norway}
-\author{Johannes Pollanen}
-\affiliation{Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA}
-\author{Angela K. Wilson}
-\affiliation{Department of Chemistry, Michigan State University, East Lansing, MI 48824, USA}
 \begin{abstract}
   Here we describe a method for generating motional entanglement between two electrons trapped above the surface of superfluid helium. In this proposed scheme the electrons are laterally confined via electrostatic gates to create an anharmonic trapping potential 
 \end{abstract}
@@ -93,11 +90,16 @@ quantum systems composed of two or more coupled objects from their classical cou
 \textcolor{blue}{JP will work on this paragraph}
 Platforms based on individual atoms (in free space or in solid matrices), electrons or collections of photons are also under development in research laboratories and startup companies. Unlike the synthetic fabricated qubits in solid-state platforms, atoms, electrons and photons are natural and replicable qubits, and the challenges reside less in physics breakthroughs and more in systems engineering.  Architectures based on trapped atomic ions with dense connectivity have demonstrated the highest fidelity operations and are viewed by many as the leading contender for scalable universal quantum computing.  In addition, arrays of optically trapped neutral atoms, with a backbone like trapped-ion systems, have emerged with new demonstrations of high-fidelity gates and scalable architectures.  Trapped electron systems, while earlier in development timeline have recently been demonstrated as novel “natural” qubits [8] that admit to precision control [9], [10] and the promise of high-fidelty gates in architechtures similar to trapped ions [9].
 
-\textcolor{red}{{Here we show ... Could someone add 3-4 bulletted points here}}
+\textcolor{red}{{Here we show ... Could someone add 3-4 bulleted points here}}
 \begin{itemize}
-    \item item 1
-    \item item 2
-    \item item 3
+    \item How an effective double-well potential can be constructed from seven
+        anodes underneath a liquid helium surface.
+        % TODO: Someone with more understanding than me regarding this process
+        % should improve on this point.
+    \item How we can construct a two-qubit architecture by trapping a single
+        electron in each well, with always-on Coulomb interaction.
+    \item How the anodes can be tuned to make the system two effective single
+        qubits, and perform a two-qubit gate.
 \end{itemize}
 
 
@@ -107,7 +109,7 @@ The system of electrons on helium is quantum non-degenerate, the system paramete
 
 This could also be a platform to investigate the crossover from purely classical to quantum mechanical representation of the system of electrons on helium. 
 
-Generating an entanglement between two quantum systems rely on exploiting interactions in a controllable way. The details in the interaction Hamiltonian between two systems defines the protocol schemes for two-qubit logic. In a superconducting circuits the interaction between qubits may arise from direct capacitive coupling between circuit element or by indirect coupling of two qubits to a common resonator (virtually populating resonator mode) which results in a non-local Hamiltonian in the form of exchange interaction~\cite{blais2020circuit}. This allow to implement various schemes for entanglement, such as $\sqrt{i\text{SWAP}}$ gate~\cite{bialczak2010quantum}, controlled-phase gate~\cite{dicarlo2009demonstration}, resonator-induced phase gate~\cite{paik2016experimental}, cross-resonance gate~\cite{chow2011simple} etc. Entanglement gates in trapped ions are produced by means of the Coulomb interaction, where shared motional modes of two or more ions, entangled to their internal states, used for transferring excitations between ion qubits~\cite{cirac1995quantum}. This has been experimentally demonstrated by implementing Cirac-Zoller gate~\cite{turchette1998deterministic}, Leibfried’s geometric-phase gate~\cite{leibfried2003experimental} etc. In photonic quantum computing schemes two-qubit entangling operations are realized by nonlinear interactions between two photons scattering from quantum dots, plasmonic nanowires, diamond vacancy centers and others embedded into waveguides~\cite{bartlett2020universal}. Two-qubit gates in semiconductor quantum dots are based on spin-spin exchange interactions~\cite{brunner2011two,watson2018programmable} or generated by coupling to a superconducting resonator via artificial spin-orbit interaction~\cite{borjans2020resonant}.
+Generating an entanglement between two quantum systems rely on exploiting interactions in a controllable way. The details in the interaction Hamiltonian between two systems defines the protocol schemes for two-qubit logic. In superconducting circuits the interaction between qubits may arise from direct capacitive coupling between circuit element or by indirect coupling of two qubits to a common resonator (virtually populating resonator mode) which results in a non-local Hamiltonian in the form of exchange interaction~\cite{blais2020circuit}. This allow to implement various schemes for entanglement, such as $\sqrt{i\text{SWAP}}$ gate~\cite{bialczak2010quantum}, controlled-phase gate~\cite{dicarlo2009demonstration}, resonator-induced phase gate~\cite{paik2016experimental}, cross-resonance gate~\cite{chow2011simple} etc. Entanglement gates in trapped ions are produced by means of the Coulomb interaction, where shared motional modes of two or more ions, entangled to their internal states, used for transferring excitations between ion qubits~\cite{cirac1995quantum}. This has been experimentally demonstrated by implementing Cirac-Zoller gate~\cite{turchette1998deterministic}, Leibfried’s geometric-phase gate~\cite{leibfried2003experimental} etc. In photonic quantum computing schemes two-qubit entangling operations are realized by nonlinear interactions between two photons scattering from quantum dots, plasmonic nanowires, diamond vacancy centers and others embedded into waveguides~\cite{bartlett2020universal}. Two-qubit gates in semiconductor quantum dots are based on spin-spin exchange interactions~\cite{brunner2011two,watson2018programmable} or generated by coupling to a superconducting resonator via artificial spin-orbit interaction~\cite{borjans2020resonant}.
 https://www.overleaf.com/project/5fc3df6a6f6128199632d3eb
 In the system of charge qubits one can generate entanglement via Coulomb interaction, where state-dependent charge configuration in one qubit impose different electric fields on the other qubit. \textit{discuss several examples, working on it, Niyaz}
 
@@ -145,11 +147,11 @@ Our work's place in this field
 
 %Electrons on helium represent a promising platform for investigating strongly-coupled qubits. Therefore a systematic investigation of the controlled generation of entanglement between two trapped electrons under the influence of coherent microwave driving pulses, taking into account the effects of the Coulomb interaction between electrons, is of significant importance for quantum information processing using trapped electrons.
 
-\section{Device prototype} % Niyaz writes this
+\section{Device prototype}\label{sec:device} % Niyaz writes this
 %general information about electrons on helium
 \textit{Niyaz / add references to microdevice works, eNe} Surface state electrons (SSE) 'floating' above liquid helium originates from quantization of electron's perpendicular to the surface motion in a trapping potential formed by attractive force from image charge and a large $\sim$ 1 eV barrier at the liquid-vacuum interface. At low temperatures the SSE are trapped in the lowest Rydberg state for vertical motion some 11 nm above the helium surface, which is perfectly clean and has a permittivity close to that of vacuum. The weak interaction with enviorment, which is mainly governed by interaction with quantized surface capillary waves (ripplons) and bulk phonons, ensures long coherence times - a vital ingredient for any qubit platform. SSE's in-plane motion can be further localized by using microdevices on the length scales approaching the interelectron separation (at the order of one micron).
 
-\textit{Niyaz / Need to rewrite this section, include FEM} The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. Once teh device is filled with helium, a thermionic emission from a tungsted filement located above the helium surface can be used to generate electrons, which will be naturally trapped at the liquid surface under positive bias voltage on the electrode g1-7. We note, that trapping single or two electrons requires a controlled delivery of electrons from a large bath of electrons, which was experimentally demonstrated. For the purpose of the current study we consider a simple gate array which allow a demonstration of entanglement between two electrons. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
+\textit{Niyaz / Need to rewrite this section, include FEM} The prototype system for measurements of two electron's in-plane motional state entanglement is sketched in Fig.~\ref{fig1}a. Here we consider a $3 \times 1$~$\mu$m$\times\mu$m size structure with a recess depth 0.5~$\mu$m, which is filled with superfluid helium via capillary action~\cite{marty1986stability}. Once teh device is filled with helium, a thermionic emission from a tungsten filament located above the helium surface can be used to generate electrons, which will be naturally trapped at the liquid surface under positive bias voltage on the electrode g1-7. We note, that trapping single or two electrons requires a controlled delivery of electrons from a large bath of electrons, which was experimentally demonstrated. For the purpose of the current study we consider a simple gate array which allow a demonstration of entanglement between two electrons. The chip design and distances are chosen to promote a quantization axis along $x$ direction and keeping electron motional states along $y$-axis at sufficiently higher energies. Seven 200~nm-wide electrodes with 200~nm gap beneath the helium layer gives enough degrees of freedom to form a double-well electrostatic confinement. The electrostatic potential at the trap region is defined as:
 \begin{align}
             V(x) = \sum_{i=1}^7 \alpha_i(x) V_i,
             \label{eq:trap}
@@ -165,181 +167,180 @@ where $\alpha_i$ is the relative contribution from each electrode shown in Fig~\
 
 The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is based on the coupling of motional states to the photons in the superconducting resonator. We estimate the coupling energy to be $g/2 \pi = \langle 1 | d E| 0 \rangle \simeq $. The largest contribution to the decoherence is realized via energy decay into phonons of the liquid helium, which was estimated to be. This allow the realization of the strong coupling regime $g \rangle \Gamma$. Each of the individual electrons coupled to its own cpw $\lambda/4$-resonator with different resonance frequencies. We estimate the crosstalk coupling of the electron to the other resonator to be, so we will ignore this. However this crosstalk will limit the fidelities of the gate and well developed the pulse shaping techniques can be used to mitigate this coupling. In a dispersive regime, realized at the condition, the frequency of the reonators becomes electron state-dependent, which can be measured via transmitted microwave signals through the cpw feedline.
 
-\section{Interaction driven entanglement}
+% TODO: Add to appendix/supplemental material
+% \section{Interaction driven entanglement}
+% 
+% In order to study the importance of level avoided crossings and
+% entanglement, we study first a simple two-level system. Thereafter we
+% extend our level-crossing model to a four-level system which can be
+% interpreted as composed of two separate (not necessarily identical)
+% subsystems.
+% 
+% We let our Hamiltonian depend linearly on a strength parameter $\lambda$
+% \[
+%        H=H_0+\lambda H_\mathrm{I},
+% \]
+% with $\lambda \in [0,1]$, where the limits $\lambda=0$ and $\lambda=1$
+% represent the non-interacting (or unperturbed) and fully interacting
+% system, respectively.  The model is an eigenvalue problem with only
+% two available states, which we label $\vert 0\rangle$ and $\vert
+% 1\rangle$, respectively. Below we will let state $\vert 0 \rangle$
+% represent the lowest state (often referred to as model-space state)
+% eigenvalue whereas state $\vert 1\rangle$ represents the eigenvalue of
+% the excluded space.  The non-interacting solutions to our problem are
+% 
+% \[
+%        H_0\vert 0 \rangle =\epsilon_0\vert 0 \rangle,
+% \]
+% and
+% \[
+%        H_0\vert 1\rangle =\epsilon_1\vert 1\rangle,
+% \]
+% with $\epsilon_0 < \epsilon_1$. We label the off-diagonal matrix
+% elements $X$, while $X_0=\langle 0 \vert H_\mathrm{I}\vert 0 \rangle$ and
+% $X_1=\langle 1 \vert H_\mathrm{I}\vert 1 \rangle$.  The Hamiltonian matrix to be diagonalized is then given by
+% \[
+% \left(\begin{array}{cc}\epsilon_0+\lambda X_0 &\lambda X \\
+% \lambda X &\epsilon_1+\lambda X_1 \end{array}\right).
+% \]
+% 
+% In the results below we set the parameters $\epsilon_0=0$,
+% $\epsilon_1=4$, $X_0=-X_1=3$ and $X=0.2$.  This eigenvalue problem can
+% easily be rewritten in terms of the standard Pauli matrices.  The
+% non-interacting solutions represent our computational basis.
+% Pertinent to our choice of parameters, is that at $\lambda\geq 2/3$,
+% the lowest eigenstate is dominated by $\vert 1\rangle$ while the upper
+% is $\vert 0 \rangle$. At $\lambda=1$ the $\vert 0 \rangle$ mixing of
+% the lowest eigenvalue is $1\%$ while for $\lambda\leq 2/3$ we have a
+% $\vert 0 \rangle$ component of more than $90\%$.  The character of the
+% eigenvectors has therefore been interchanged when passing $z=2/3$. The
+% value of the parameter $X$ represents the strength of the coupling
+% between the model space and the excluded space.  
+% % add figure here
+% 
+% This  model exhibits a simple level crossing where the
+% composition of the final interacting states change character as we
+% gradually switch on the interaction.  In order to study how
+% entanglement relates to level crossing and the main results of our
+% investigations, we extend the simple two-level system to a four level
+% system. This system can be thought of as composed of two subsystems
+% $A$ and $B$. Each subsystem has computational basis states
+% 
+% \[
+% \vert 0\rangle_{\mathrm{A,B}}=\begin{bmatrix} 1 & 0\end{bmatrix}^T \hspace{1cm} \vert 1\rangle_{\mathrm{A,B}}=\begin{bmatrix} 0 & 1\end{bmatrix}^T.
+% \]
+% 
+% The subsystems could represent single particles or composite many-particle systems of a given symmetry.
+% This leads to the many-body computational basis states
+% \[
+% \vert 00\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 1 & 0 & 0 &0\end{bmatrix}^T,
+% \]
+% and
+% \[
+% \vert 10\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 1 & 0 &0\end{bmatrix}^T,
+% \]
+% and
+% \[
+% \vert 01\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 1 &0\end{bmatrix}^T,
+% \]
+% and finally
+% \[
+% \vert 11\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 0 &1\end{bmatrix}^T.
+% \]
+% These computational basis states define also the eigenstates of the non-interacting  Hamiltonian
+% \[
+% H_0\vert 00 \rangle = \epsilon_{00}\vert 00 \rangle,
+% \]
+% \[
+% H_0\vert 10 \rangle = \epsilon_{10}\vert 10 \rangle,
+% \]
+% \[
+% H_0\vert 01 \rangle = \epsilon_{01}\vert 01 \rangle,
+% \]
+% and
+% \[
+% H_0\vert 11 \rangle = \epsilon_{11}\vert 11 \rangle.
+% \]
+% The interacting part of the Hamiltonian $H_{\mathrm{I}}$ is given by the tensor product of two $\sigma_x$ and $\sigma_z$  matrices, respectively, that is
+% \[
+% H_{\mathrm{I}}=H_x\sigma_x\otimes\sigma_x+H_z\sigma_z\otimes\sigma_z,
+% \]
+% 
+% where $H_x$ and $H_z$ are interaction strength parameters. Our final Hamiltonian matrix is given by
+% \[
+% \bm{H}=\begin{bmatrix} \epsilon_{00}+H_z & 0 & 0 & H_x \\
+%                        0  & \epsilon_{10}-H_z & H_x & 0 \\
+%                        0 & H_x & \epsilon_{01}+H_z & 0 \\
+%                        H_x & 0 & 0 & \epsilon_{11} -H_z \end{bmatrix}.
+% \]
+% 
+% The four eigenstates of the above Hamiltonian matrix can in turn be used to
+% define density matrices. As an example, the density matrix of the
+% first eigenstate (lowest energy $E_0$) $\Psi_0$ is
+% 
+% \[
+% \rho_0=\left(\alpha_{00}\vert 00 \rangle\langle 00\vert+\alpha_{10}\vert 10 \rangle\langle 10\vert+\alpha_{01}\vert 01 \rangle\langle 01\vert+\alpha_{11}\vert 11\
+%  \rangle\langle 11\vert\right),
+% \]
+% where the coefficients $\alpha_{ij}$ are the eigenvector coefficients
+% resulting from the solution of the above eigenvalue problem.  We can
+% then in turn define the density matrix for the subsets $A$ or $B$ as
+% 
+% \[
+% \rho_A=\mathrm{Tr}_B(\rho_{0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{B}+\langle 1 \vert \rho_{0} \vert 1\rangle_{B},
+% \]
+% or
+% \[
+% \rho_B=\mathrm{Tr}_A(\rho_{\Psi_0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{A}+\langle 1 \vert \rho_{0} \vert 1\rangle_{A}.
+% \]
+% 
+% The density matrices for these subsets can be used to compute the
+% so-called von Neumann entropy, which is one of the possible measures
+% of entanglement. A pure state has entropy equal zero while entangled
+% state have an entropy larger than zero. The von Neumann entropy is
+% defined as
+% \[
+% S(A,B)=-\mathrm{Tr}\left(\rho_{A,B}\log_2 (\rho_{A,B})\right).
+% \]
+% The example here shows the above von Neumann entropy based on the
+% density matrix for the lowest many-body state. We see clearly a jump
+% in the entropy around the point where we have a level crossing. At
+% interaction strength $\lambda=0$ we have many-body states purely
+% defined by their computational basis states. As we switch on the
+% interaction strength, we obtain an increased degree of mixing and the
+% entropy increases till we reach the level crossing point where we see
+% an additional and sudden increase in entropy. Similar behaviors are
+% observed for the other states. The most important result from this
+% example is that entanglement is driven by the Hamiltonian itself and
+% the strength of the interaction matrix elements and the
+% non-interacting energies.
+% 
+% % add figs here
+% 
+% With these introductory examples, we are now in the position where we
+% can start to interpret and model realistic interacting many-electron
+% systems in terms of the strength of the Coulomb interaction and the
+% shapes of the potential well. Our specific system is composed of two
+% potential wells with one fermion (electrons in our case) trapped in
+% each well.  Each potential well can sustain a certain number of bound
+% single-particle states and defines our subsystems $A$ and $B$. The
+% non-interacting part of the Hamiltonian is given by the mere addition
+% of the single-particle energies from each respective well (make figure
+% with labels A and B and single-particle energies).
+% 
+% The eigenstates of the non-interacting Hamiltonian $H_0$ are given by
+% various computational basis states with the difference from the above
+% simple models that now we have more than two states in each
+% subsystem. The depths of the potential wells and their respective
+% distances can be tuned in an experimental set up. The theoretical
+% calculations presented here can thus serve as a tool which aids in
+% finding the optimal parameters in order to study entanglement in a
+% many-body environment.
+% 
+% What follows is a description of the theoretical models used to
+% simulate the two-electron system. 
 
-In order to study the importance of level avoided crossings and
-entanglement, we study first a simple two-level system. Thereafter we
-extend our level-crossing model to a four-level system which can be
-interpreted as composed of two separate (not necessarily identical)
-subsystems.
-
-We let our Hamiltonian depend linearly on a strength parameter $z$
-\[
-       H=H_0+\lambda H_\mathrm{I},
-\]
-
-with $\lambda \in [0,1]$, where the limits $\lambda=0$ and $\lambda=1$
-represent the non-interacting (or unperturbed) and fully interacting
-system, respectively.  The model is an eigenvalue problem with only
-two available states, which we label $\vert 0\rangle$ and $\vert
-1\rangle$, respectively. Below we will let state $\vert 0 \rangle$
-represent the lowest state (often referred to as model-space state)
-eigenvalue whereas state $\vert 1\rangle$ represents the eigenvalue of
-the excluded space.  The non-interacting solutions to our problem are
-
-\[
-       H_0\vert 0 \rangle =\epsilon_0\vert 0 \rangle,
-\]
-and
-\[
-       H_0\vert 1\rangle =\epsilon_1\vert 1\rangle,
-\]
-
-with $\epsilon_0 < \epsilon_1$. We label the off-diagonal matrix
-elements $X$, while $X_0=\langle 0 \vert H_I\vert 0 \rangle$ and
-$X_1=\langle 1 \vert H_1\vert 1 \rangle$.  The Hamiltonian matrix to be diagonalized is then given by
-\[
-\left(\begin{array}{cc}\epsilon_0+\lambda X_0 &\lambda X \\
-\lambda X &\epsilon_1+\lambda X_1 \end{array}\right).
-\]
-
-In the results below we set the parameters $\epsilon_0=0$,
-$\epsilon_1=4$, $X_0=-X_1=3$ and $X=0.2$.  This eigenvalue problem can
-easily be rewritten in terms of the standard Pauli matrices.  The
-non-interacting solutions represent our computational basis.
-Pertinent to our choice of parameters, is that at $\lambda\geq 2/3$,
-the lowest eigenstate is dominated by $\vert 1\rangle$ while the upper
-is $\vert 0 \rangle$. At $\lambda=1$ the $\vert 0 \rangle$ mixing of
-the lowest eigenvalue is $1\%$ while for $\lambda\leq 2/3$ we have a
-$\vert 0 \rangle$ component of more than $90\%$.  The character of the
-eigenvectors has therefore been interchanged when passing $z=2/3$. The
-value of the parameter $X$ represents the strength of the coupling
-between the model space and the excluded space.  
-% add figure here
-
-This  model exhibits a simple level crossing where the
-composition of the final interacting states change character as we
-gradually switch on the interaction.  In order to study how
-entanglement relates to level crossing and the main results of our
-investigations, we extend the simple two-level system to a four level
-system. This system can be thought of as composed of two subsystems
-$A$ and $B$. Each subsystem has computational basis states
-
-\[
-\vert 0\rangle_{\mathrm{A,B}}=\begin{bmatrix} 1 & 0\end{bmatrix}^T \hspace{1cm} \vert 1\rangle_{\mathrm{A,B}}=\begin{bmatrix} 0 & 1\end{bmatrix}^T.
-\]
-
-The subsystems could represent single particles or composite many-particle systems of a given symmetry.
-This leads to the many-body computational basis states
-\[
-\vert 00\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 1 & 0 & 0 &0\end{bmatrix}^T,
-\]
-and
-\[
-\vert 10\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 1 & 0 &0\end{bmatrix}^T,
-\]
-and
-\[
-\vert 01\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 1 &0\end{bmatrix}^T,
-\]
-and finally
-\[
-\vert 11\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 0 &1\end{bmatrix}^T.
-\]
-These computational basis states define also the eigenstates of the non-interacting  Hamiltonian
-\[
-H_0\vert 00 \rangle = \epsilon_{00}\vert 00 \rangle,
-\]
-\[
-H_0\vert 10 \rangle = \epsilon_{10}\vert 10 \rangle,
-\]
-\[
-H_0\vert 01 \rangle = \epsilon_{01}\vert 01 \rangle,
-\]
-and
-\[
-H_0\vert 11 \rangle = \epsilon_{11}\vert 11 \rangle.
-\]
-The interacting part of the Hamiltonian $H_{\mathrm{I}}$ is given by the tensor product of two $\sigma_x$ and $\sigma_z$  matrices, respectively, that is
-\[
-H_{\mathrm{I}}=H_x\sigma_x\otimes\sigma_x+H_z\sigma_z\otimes\sigma_z,
-\]
-
-where $H_x$ and $H_z$ are interaction strength parameters. Our final Hamiltonian matrix is given by
-\[
-\bm{H}=\begin{bmatrix} \epsilon_{00}+H_z & 0 & 0 & H_x \\
-                       0  & \epsilon_{10}-H_z & H_x & 0 \\
-                       0 & H_x & \epsilon_{01}+H_z & 0 \\
-                       H_x & 0 & 0 & \epsilon_{11} -H_z \end{bmatrix}.
-\]
-
-The four eigenstates of the above Hamiltonian matrix can in turn be used to
-define density matrices. As an example, the density matrix of the
-first eigenstate (lowest energy $E_0$) $\Psi_0$ is
-
-\[
-\rho_0=\left(\alpha_{00}\vert 00 \rangle\langle 00\vert+\alpha_{10}\vert 10 \rangle\langle 10\vert+\alpha_{01}\vert 01 \rangle\langle 01\vert+\alpha_{11}\vert 11\
- \rangle\langle 11\vert\right),
-\]
-where the coefficients $\alpha_{ij}$ are the eigenvector coefficients
-resulting from the solution of the above eigenvalue problem.  We can
-then in turn define the density matrix for the subsets $A$ or $B$ as
-
-\[
-\rho_A=\mathrm{Tr}_B(\rho_{0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{B}+\langle 1 \vert \rho_{0} \vert 1\rangle_{B},
-\]
-or
-\[
-\rho_B=\mathrm{Tr}_A(\rho_{\Psi_0})=\langle 0 \vert \rho_{0} \vert 0\rangle_{A}+\langle 1 \vert \rho_{0} \vert 1\rangle_{A}.
-\]
-
-The density matrices for these subsets can be used to compute the
-so-called von Neumann entropy, which is one of the possible measures
-of entanglement. A pure state has entropy equal zero while entangled
-state have an entropy larger than zero. The von Neumann entropy is
-defined as
-\[
-S(A,B)=-\mathrm{Tr}\left(\rho_{A,B}\log_2 (\rho_{A,B})\right).
-\]
-The example here shows the above von Neumann entropy based on the
-density matrix for the lowest many-body state. We see clearly a jump
-in the entropy around the point where we have a level crossing. At
-interaction strength $\lambda=0$ we have many-body states purely
-defined by their computational basis states. As we switch on the
-interaction strength, we obtain an increased degree of mixing and the
-entropy increases till we reach the level crossing point where we see
-an additional and sudden increase in entropy. Similar behaviors are
-observed for the other states. The most important result from this
-example is that entanglement is driven by the Hamiltonian itself and
-the strength of the interaction matrix elements and the
-non-interacting energies.
-
-% add figs here
-
-With these introductory examples, we are now in the position where we
-can start to interpret and model realistic interacting many-electron
-systems in terms of the strength of the Coulomb interaction and the
-shapes of the potential well. Our specific system is composed of two
-potential wells with one fermion (electrons in our case) trapped in
-each well.  Each potential well can sustain a certain number of bound
-single-particle states and defines our subsystems $A$ and $B$. The
-non-interacting part of the Hamiltonian is given by the mere addition
-of the single-particle energies from each repsective well (make figure
-with labels A and B and single-particle energies).
-
-The eigenstates of the non-interacting Hamiltonian $H_0$ are given by
-various computational basis states with the difference from the above
-simple models that now we have more than two states in each
-subsystem. The depths of the potential wells and their respective
-distances can be tuned in an experimental set up. The theoretical
-calculations presented here can thus serve as a tool which aids in
-finding the optimal parameters in order to study entanglement in a
-many-body environment.
-
-What follows is a description of the theoretical models used to
-simulate the two-electron system. 
-
-\section{Entanglement in quantum dot systems} % Hakon, Oyvind
+\section{Entanglement in quantum dot systems}
     As we are studying a model comprised of two electrons restricted to move in a
     one-dimensional external potential we have employed exact diagonalization of the
     two-body Schrödinger equation to solve the problem.
@@ -389,6 +390,8 @@ simulate the two-electron system.
         % TODO: Niyaz will handle this in the introduction
 
     \subsection{Constructing the single-particle basis sets}
+        % TODO: Add comment on the non-variational nature of the finite-difference
+        % basis sets.
         As much of the analysis will be performed by varying the shape and
         strength of the interpolated external potential we deem a flexible
         finite-difference basis set a suitable candidate.
@@ -433,6 +436,8 @@ simulate the two-electron system.
         the wells for the energy levels that we are interested in.
         % TODO: We will not see these states for the distinguishable model
         % as we force one particle to be in each well.
+        % TODO: Add comment on singlet and triplet states being degenerate,
+        % thus making spin redudant.
         This makes the system split up into two distinguishable subsystems
         that we label $L$ and $R$ with one particle in each subsystem.
         In order to distinguish these systems from one another in the
@@ -509,11 +514,12 @@ simulate the two-electron system.
         }, often denoted the \emph{full configuration interaction} method
         in electronic structure theory \cite{the-pink-book}.
         The wave function ansatz is then given by
-        \begin{align*}
+        \begin{align}
             \ket*{\Psi_I}
             &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
             \ket*{\phi^{L}_k \phi^{R}_l},
-        \end{align*}
+            \label{eq:wave-function-ansatz}
+        \end{align}
         where no symmetry is assumed for the wave function, and the index
         $I = (i, j)$ is a compound index denoting the excited two-body
         state we are looking at.
@@ -577,7 +583,7 @@ simulate the two-electron system.
              % \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\phi^L_k \phi^R_l}
              % C_{kl, K}
              % \\
-            &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
+            &= % \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
             H_{ij, kl} C_{kl, K}
             = S_{ij, kl} C_{kl, K} E_{K},
         \end{align*}
@@ -623,6 +629,7 @@ simulate the two-electron system.
         $C_{kl, K}$ and the corresponding eigenenergies $E_K$.
 
     \subsection{Spin considerations}
+        % TODO: Consider moving this higher up, and maybe not as a subsection
         We have so far in this discussion ignored the spin component of the electrons.
         As we are considering two electrons we expect to see singlet and triplet
         configurations for the total wave function.
@@ -703,16 +710,15 @@ simulate the two-electron system.
         From the discussion above it is tempting to choose the two lowest
         single-particle states $\ket*{\phi^{A}_i}$ in each well as our
         computational basis states.
-        However, this will not be correct in the strongly interacting system
-        we are looking at.
+        These are, however, not good approximations to the "true" computational
+        basis states in the interacting case.
         Granted, the states are separable in each well, but the two-body
         wave function $\ket*{\Psi_I}$ will in general not be a product state
         of the single-particle states.
         This means that the computational basis states will be represented by
         the reduced density operators $\hat{\rho}^L_I$ and $\hat{\rho}^R_I$,
-        where $I$ denotes the two-body wave function $\ket*{\Psi_I}$ they
-        come from.
-        % Bad phrasing!
+        where $I$ denotes the two-body wave function $\ket*{\Psi_I}$ such that
+        $\hat{\rho}_I = \dyad*{\Psi_I}{\Psi_I}$.
         In principle we could construct a single-particle basis from these
         reduced density operators, viz.,
         \begin{align*}
@@ -727,8 +733,172 @@ simulate the two-electron system.
             found by diagonalizing the one-body density operator $\hat{\rho}^1$.
             % TODO: Cite papers by Löwdin if this should be included.
         }.
-        These states are related to the Schmidt decomposition.
+        These states are related to the Schmidt decomposition in that the
+        Schmidt decomposition gives single-particle states that diagonalize
+        the reduced density matrices.
  
+\section{Operational regimes}
+    In this project we have been looking for well configurations corresponding to three different types of interaction between the qubits. In configuration I the qubits are detuned, whereas configuration II and III corresponds to avoided level crossings between two ($E_{01}, E_{10}$) and three ($E_{11}, E_{20}, E_{02}$) energy levels respectively. The qubit interaction within these different well configurations will be discussed in detail below. Adiabatic transitions between the different configurations can be achieved by parameterizing the well voltages according to
+    %They are the \emph{measuring regime}, the \emph{double-avoided
+    %crossing regime}, and the \emph{triple-avoided crossing regime}.
+    % TODO: Find better names for the different regimes.
+    % Especially for the double- and triple-avoided cases.
+    % To alter the wells we have to tune all seven anodes, and exactly
+    % how these are dialed will be discussed in detail below.
+    % Conceptually we are seeking three a parameterization $\zeta$
+    % such that $\hat{H}(\zeta)$ gives the Hamiltonian for a given
+    % set of anodes.
+    % We will denote the three different regimes by $\zeta_m$ for the
+    % measuring regime, $\zeta_d$ for the double-avoided crossing, and
+    % $\zeta_t$ for the triple-avoided crossing.
+    % These regimes will be adiabatically connected,
+    % % TODO: Define adiabatically connected
+    % and we construct a linear interpolation between the three regimes.
+    \begin{align}
+        \vb*{V}(\zeta) = (1-\zeta)\vb*{V}_\mathrm{I} + \zeta\vb*{V}_\mathrm{III},
+        \label{eq:well-parameterization}
+    \end{align}
+    where $\vb*{V}_\mathrm{I}$ are the electrode voltages for configuration I and $\vb*{V}_\mathrm{III}$ are the electrode voltages for configuration III. Configuration II is obtained with voltages $\vb*{V}_\mathrm{II} = \vb*{V}(\zeta_\mathrm{II})$ for some $\zeta_\mathrm{II}\in(0,1)$. %Should maybe be write the actual value of \zeta instead?
+
+    \subsection{Configuration I}
+        % This regime is supposed to make the two-body wave function
+        % into a separable wave function in the single-particle basis,
+        % and a product state in the natural orbital basis.
+        % A large detuning, i.e., large difference in the excitation energy,
+        % in each subsystem ensures that no entanglement will occur.
+        % % TODO: Are there works that can be cited on this?
+        % % Or is it possible to show for some model system?
+        % In this regime we are looking for two-body states that have zero
+        % entropy.
+        % This means that the eigenstates can be written as
+        % \begin{align*}
+        %     \ket*{\Psi_I}
+        %     % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
+        %     % \ket*{\phi^{L}_k \phi^{R}_l}
+        %     = \qty(
+        %         \sum_{k = 1}^{N^L}
+        %         d^L_{k, I} \ket*{\phi^L_k}
+        %     ) \otimes \qty(
+        %         \sum_{l = 1}^{N^R}
+        %         d^R_{l, I} \ket*{\phi^R_l}
+        %     )
+        %     = \ket*{\xi^L_I \xi^{R}_I},
+        % \end{align*}
+        % where in this case the coefficient matrix from
+        % Eq.~\ref{eq:wave-function-ansatz} splits up into two
+        % disjoint vectors.
+        % % TODO: That is, there is no mixing between the states.
+        % % This can be written way more smoothly.
+        % In the last equation we have inserted the natural orbitals, or
+        % Schmidt basis for this separable wave function.
+        % This turns then into a product state, and by definition we thus
+        % see that there is no entropy.
+
+        The purpose of this well configuration is to allow measurements and gates acting on one qubit without affecting the state of the other qubit. This requires that the two-body wave function is separable in the single-particle basis, or equivalently a product state in the natural orbital basis, i.e. the eigenstates can be written as
+        \begin{align*}
+            \ket{\Psi_I}
+            % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
+            % \ket*{\phi^{L}_k \phi^{R}_l}
+            = \qty(
+                \sum_{k = 1}^{N^L}
+                d^L_{k, I} \ket{\phi^L_k}
+            ) \otimes \qty(
+                \sum_{l = 1}^{N^R}
+                d^R_{l, I} \ket{\phi^R_l}
+            )
+            = \ket{\xi^L_I \xi^{R}_I},
+        \end{align*}
+        where $\ket*{\xi^L_I}, \ket*{\xi^R_I}$ denotes the natural orbitals, or
+        Schmidt basis, for the separable wave function. By definition this is a product state and thus the entropy is zero. To achieve this property of the wave function, we target a well configuration with large qubit detuning, i.e. a large difference in excitation energy for each subsystem. This ensures that no entanglement occurs.  % TODO: Are there works that can be cited on this?
+        % Or is it possible to show for some model system?
+
+
+    \subsection{Configuration II}
+        % The second regime is the double-avoided crossing regime and is
+        % meant to be used for an entangling two-qubit gate.
+        % We wish to adiabatically continue the $\ket*{01}$- and
+        % $\ket*{10}$-states (as seen in the measuring regime) to the
+        % point where they are closest in energy.
+        % % TODO: Describe "adiabatically continue", or find better word.
+        % Here the difference in energy will be so small making the two
+        % states entangle.
+        % % TODO: Explain why this occurs.
+        % The idea is therefore to create a parameterization of the voltages
+        % in the potential wells that will take the states from the measuring
+        % regime and to the double-avoided crossing regime where only
+        % the $\ket*{01}$ and $\ket*{10}$ will mix.
+        In the second well configuration we target an avoided crossing between the $\ket*{01}$ and
+        $\ket*{10}$ state, which is meant to be used for an entangling two-qubit gate. When moving from configuration I into the avoided crossing of configuration II infinitely slow, the probability of a transition from the $\ket*{01}$ to the $\ket*{10}$ state is zero according to the adiabatic theorem. An infinitely fast shift in configuration will instead cause the transition probability to be 1. Changing configuration, i.e. $\vb*{V}(\zeta)$, with a finite speed $\dv{\zeta}{t}$ will thus result in a transition probability $p\in(0,1)$ and hence an entangled state. %Should this be explained in some other way? Is an explanation even needed?
+        
+    % \subsection{Triple-avoided crossing regime}
+    %     The last regime concerns the so-called triple-avoided crossing
+    %     point \cite{triple-avoided-crossing}.
+    %     There are two reasons to include this regime.
+    %     % TODO: Are there really two reasons, or just the one?
+    %     Firstly, when moving from the measuring regime to the double-avoided
+    %     crossing point we do not want any of the other computational states
+    %     to mix with each other or leak to higher excited states.
+    %     Creating a triple-avoided crossing point for the $\ket*{11}$,
+    %     $\ket*{02}$ and $\ket*{20}$-states removes a factor of noise
+    %     in this case, as we can place the triple-avoided crossing point
+    %     after the double-avoided crossing point
+    %     \cite{triple-avoided-crossing}.
+    %     % TODO: Try to give a more visual explanation of this:
+    %     % (measuring $\to$ double-avoided $\to$ triple-avoided)
+    %     Secondly, we wish to included an extra gate.
+    %     % TODO: This must be understood.
+    %     % See the triple-avoided-crossing paper.
+    %     The $ZZ$ coupling strength is given by $\zeta = E_{11}-E_{01}-E_{10}$. %TODO: Write about this?
+
+    \subsection{Configuration III}
+        The last configuration corresponds to an avoided crossing between the three double excitation energy levels $E_{11}, E_{20}$ and $E_{02}$, i.e. a triple degeneracy point. There are two reasons to include this configuration in our well parameterization. The first is that the triple degeneracy yields a high $ZZ$-coupling, which allows for faster execution of controlled phase gates such as the CZ gate. The second reason is to separate the avoided crossings of the double excitation energy levels from the crossing of the single excitation states (configuration II), as seen in see figure ?. This separation reduces the parasitic $ZZ$-coupling in configuration II and therefore improve the performance of the entangling gates that we aim to realize in that configuration \cite{triple-avoided-crossing}. 
+    
+
+
+\section{Numerical implementation}
+
+    \subsection{Finding optimal well configurations}
+        % Jonas and Stian describe how the double and triple avoided crossings were found.
+        % Include a discussion on the far-detuned situation.
+        
+        The ultimate goal of our work here is to control the liquid helium double well system in such a way that it behaves as a two-qubit quantum computer. At our disposal are the voltages $\boldsymbol{V}=[V_1,V_2,\cdots,V_7]$ of the seven electrodes described in section \ref{sec:device}, as well as electromagnetic pulses from the resonator described in the same section. The voltages affect the overall shape of the double well potential through \eqref{eq:trap}, so we refer to a specific set of voltages $\boldsymbol{V}$ as a \textit{well configuration}. In this section, we present a way of finding optimal configurations for one-qubit operations, as well as optimal configurations for two-qubit operations.
+        
+        An optimal well configuration for doing one-qubit operations, that is, operations on each individual well, is a configuration for which the wells have distinct excitation frequencies. The resonator can then interact with each well through photons of its specific frequency. Since the frequency of each well depends mainly on the curvature at the bottom of the well,\may{[ref?]} we want to adjust the curvatures of each well so that the frequencies are distinct, but at the same time within the resonator working range of 5 to 15 GHz.\may{[ref]} In order to adjust the curvatures directly, 
+        an inversion program was implemented, which, given 7 constraints on the potential $V(x)$ and its derivatives, returns the 7 required voltages $\boldsymbol{V}$ on the electrodes.\may{[link to folder]} \may{[Add equations to elaborate on this?]} To pin down the desired overall shape of a double well, 3 constraints had to be spent on the depths of each well and the depth of the well divide in the middle of the device. 2 further constraints were used to ensure a slope of zero at the bottom points of each well, leaving the last 2 constraints to control the curvature at the bottom points. Using this inversion program, we were able to find a configuration for which the wells are detuned within the resonator working range, while keeping the entanglement of each energy state low and the voltages below magnitudes which would lead to electric breakdown between the electrodes or from the helium surface to the electrodes. This configuration, from here on refered to as the \textit{detuned configuration} is further described and discussed in section \ref{sec:results}.
+        
+        
+        Having found the voltages for the detuned configuration, we want to go from this configuration to a double avoided crossing. In order to do this, we want the computational basis states $\rho_{10}(\boldsymbol{V})$ and $\rho_{01}(\boldsymbol{V})$ to become entangled, while the entanglement between the other computational basis states remain as small as possible. Note that we have now written down the dependence of the states on the voltages $\boldsymbol{V}$ explicitly, as these are the only parameters that should be varied to generate the entanglement. As a measure of entanglement, we use the entanglement entropy given by
+        \begin{align*}
+            S_{ij}(\boldsymbol{V}) = -\Tr{\Tr_R{\rho_{ij}(\boldsymbol{V})}\log_2[\Tr_R{\rho_{ij}(\boldsymbol{V})]}},
+        \end{align*}
+        where the subscripts $ij$ denotes which computational basis state we wish to calculate the entanglement entropy for. We arbitrarily chose to trace over subsystem $R$.
+        A possible configuration for the double avoided crossing might be determined by the voltages that constitute a local or global minima of the following cost function
+        \begin{align*}
+            C(\boldsymbol{V}) =& -\alpha S_{01}(\boldsymbol{V}) \notag \\
+            &- \alpha S_{10}(\boldsymbol{V}) \notag \\
+            &+ S_{00}(\boldsymbol{V}) \notag \\
+            &+ S_{20}(\boldsymbol{V}) \notag \\
+            &+ S_{11}(\boldsymbol{V}) \notag \\
+            &+ S_{02}(\boldsymbol{V}),
+        \end{align*}
+        where $\alpha > 0$ is a hyperparameter that decides the weight of the first two terms. To motivate the use of this function, notice that the terms $-\alpha S_{01}(\boldsymbol{V})$ and $-\alpha S_{10}(\boldsymbol{V})$ is minimized when the entanglement entropy of $\rho_{01}$ and $\rho_{10}$ is maximized, respectively. Also, $S_{00}(\boldsymbol{V})$, $S_{20}(\boldsymbol{V})$, $S_{11}(\boldsymbol{V})$ and $S_{02}(\boldsymbol{V})$ is minimized when the entanglement entropy of $\rho_{00}$, $\rho_{20}$, $\rho_{11}$ and $\rho_{02}$ is minimized, respectively. We did not include the entanglement entropy of any of the higher energy states as these will not be used for computations. To minimize $C(\boldsymbol{V})$ we evaluate its gradient wrt. the voltages, that is,
+        $\nabla_{\boldsymbol{V}}C(\boldsymbol{V})$, using the Pytorch machine learning library \may{[ref]}. We then use a variation of gradient descent, Adam \may{[ref]} to update the voltages.
+        
+        For the triple avoided crossing, one possible cost function can be defined as
+        \begin{align*}
+            C(\boldsymbol{V}) =& -\alpha S_{20}(\boldsymbol{V}) \notag \\
+            &- \alpha S_{11}(\boldsymbol{V}) \notag \\
+            &- \alpha S_{02}(\boldsymbol{V}) \notag \\
+            &+ S_{00}(\boldsymbol{V}) \notag \\
+            &+ S_{01}(\boldsymbol{V}) \notag \\
+            &+ S_{10}(\boldsymbol{V}).
+        \end{align*}
+        The voltages are then updated in a similar fashion as with the double avoided crossing case.
+        
+        
+\section{Results and Discussion}\label{sec:results} % all of us
+
+\textit{Niyaz / Discussing possible two-qubit entanglement gates}
 
         
 % TODO: Plot the coefficients of the eigenstates in well
@@ -739,9 +909,6 @@ simulate the two-electron system.
 \caption{\label{fig2} (a) Figure caption.}
 \end{figure}
 
-\section{Results and Discussion} % all of us
-
-\textit{Niyaz / Discussing possible two-qubit entanglement gates}
 
 % TODO: various gate description: cross-resonance, c-PHASE gates and estimate the typical 'performance' quantities from final avioded crossing plots 
 
