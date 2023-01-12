@@ -515,7 +515,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         in electronic structure theory \cite{the-pink-book}.
         The wave function ansatz is then given by
         \begin{align}
-            \ket*{\Psi_I}
+            \ket*{\Phi_I}
             &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
             \ket*{\phi^{L}_k \phi^{R}_l},
             \label{eq:wave-function-ansatz}
@@ -525,7 +525,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         state we are looking at.
         We denote the two-particle product state as $\ket*{\phi^L_i \phi^R_j}
         \equiv \ket*{\phi^L_i} \otimes \ket*{\phi^R_j}$.
-        There will be a total of $N^L N^R$ eigenstates $\ket*{\Psi_I}$.
+        There will be a total of $N^L N^R$ eigenstates $\ket*{\Phi_I}$.
         We adopt the notation $\bra*{\phi^L_i \phi^R_j}
         = \bra*{\phi^L_i} \otimes \bra*{\phi^R_j}
         \equiv \ket*{\phi^L_i \phi^R_j}^{\dagger}$.
@@ -578,7 +578,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         equation, and projecting onto a two-body state
         $\bra*{\phi^L_i \phi^R_j}$ we get
         \begin{align*}
-            \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Psi_K}
+            \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\Phi_K}
              % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
              % \mel*{\phi^L_i \phi^R_j}{\hat{H}}{\phi^L_k \phi^R_l}
              % C_{kl, K}
@@ -594,7 +594,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         the overlap matrix elements between two two-body states.
         Solving this generalized eigenvalue equation gives us the
         coefficients $C_{ij, K}$ where the columns correspond to the
-        eigenstates $\ket*{\Psi_K}$, and the eigenenergies $E_K$.
+        eigenstates $\ket*{\Phi_K}$, and the eigenenergies $E_K$.
         As discussed in the previous section we know that the one-body Hamiltonian
         will split up into two disjoint operators; one for the left-well and the
         other for the right-well.
@@ -654,10 +654,10 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         This lets us create a pure state from the two-particle wave function.
         % TODO: Which states are we interested in measuring entanglement for?
 
-        For a given two-body pure state $\ket*{\Psi}$ we can construct the
+        For a given two-body pure state $\ket*{\Phi}$ we can construct the
         corresponding density operator
         \begin{align*}
-            \hat{\rho} = \dyad*{\Psi}{\Psi}
+            \hat{\rho} = \dyad*{\Phi}{\Phi}
             = \sum_{i, k = 1}^{N^L}
             \sum_{j, l = 1}^{N^R}
             C_{ij} C^{*}_{kl} \dyad*{\phi^L_i \phi^R_j}{
@@ -695,6 +695,9 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         of the two subsystems.
         We can construct the one-body density operator from $\hat{\rho}^1
         = \hat{\rho}^L + \hat{\rho}^R$.
+
+
+        
         % TODO: Describe how measurement is performed using the reduced density
         % operators.
         % We can compute the expectation value of the energy in the subsystems.
@@ -713,22 +716,22 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         These are, however, not good approximations to the "true" computational
         basis states in the interacting case.
         Granted, the states are separable in each well, but the two-body
-        wave function $\ket*{\Psi_I}$ will in general not be a product state
+        wave function $\ket*{\Phi_I}$ will in general not be a product state
         of the single-particle states.
         This means that the computational basis states will be represented by
         the reduced density operators $\hat{\rho}^L_I$ and $\hat{\rho}^R_I$,
-        where $I$ denotes the two-body wave function $\ket*{\Psi_I}$ such that
-        $\hat{\rho}_I = \dyad*{\Psi_I}{\Psi_I}$.
+        where $I$ denotes the two-body wave function $\ket*{\Phi_I}$ such that
+        $\hat{\rho}_I = \dyad*{\Phi_I}{\Phi_I}$.
         In principle we could construct a single-particle basis from these
         reduced density operators, viz.,
         \begin{align*}
-            \hat{\rho}^L_i \ket*{i^L}
-            = \lambda^L_i \ket*{i^L},
+            \hat{\rho}^A_i \ket*{\psi^A_i}
+            = \lambda^A_i \ket*{\psi^A_i},
         \end{align*}
-        where $\qty{\ket*{i^L}}_{i = 1}^{N^R}$ would be the single-particle
+        where $\qty{\ket*{\psi^A_i}}_{i = 1}^{N^A}$ would be the single-particle
         states that most resemble the ``true'' computational basis states,
-        and the eigenvalues $\lambda^L_i$ represents their occupation
-        in the given two-body eigenstate $\ket*{\Psi_I}$ \footnote{
+        and the eigenvalues $\lambda^A_i$ represent their occupation
+        in the given two-body eigenstate $\ket*{\Phi_I}$ \footnote{
             These states closely resembles the \emph{natural orbitals}
             found by diagonalizing the one-body density operator $\hat{\rho}^1$.
             % TODO: Cite papers by Löwdin if this should be included.
@@ -736,6 +739,8 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         These states are related to the Schmidt decomposition in that the
         Schmidt decomposition gives single-particle states that diagonalize
         the reduced density matrices.
+        % TODO: Rewrite this section using the Schmidt decomposition, and show
+        % that the Schmidt states diagonalize the reduced density operators.
  
 \section{Operational regimes}
     In this project we have been looking for well configurations corresponding to three different types of interaction between the qubits. In configuration I the qubits are detuned, whereas configuration II and III corresponds to avoided level crossings between two ($E_{01}, E_{10}$) and three ($E_{11}, E_{20}, E_{02}$) energy levels respectively. The qubit interaction within these different well configurations will be discussed in detail below. Adiabatic transitions between the different configurations can be achieved by parameterizing the well voltages according to
@@ -758,7 +763,14 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         \vb*{V}(\zeta) = (1-\zeta)\vb*{V}_\mathrm{I} + \zeta\vb*{V}_\mathrm{III},
         \label{eq:well-parameterization}
     \end{align}
-    where $\vb*{V}_\mathrm{I}$ are the electrode voltages for configuration I and $\vb*{V}_\mathrm{III}$ are the electrode voltages for configuration III. Configuration II is obtained with voltages $\vb*{V}_\mathrm{II} = \vb*{V}(\zeta_\mathrm{II})$ for some $\zeta_\mathrm{II}\in(0,1)$. %Should maybe be write the actual value of \zeta instead?
+    where $\vb*{V}_\mathrm{I}$ are the electrode voltages for configuration I and $\vb*{V}_\mathrm{III}$ are the electrode voltages for configuration III. Configuration II is obtained with voltages $\vb*{V}_\mathrm{II} = \vb*{V}(\zeta_\mathrm{II})$ for some $\zeta_\mathrm{II}\in(0,1)$.
+    That is, configuration II is found on the path from configuration I to configuration III.
+    %Should maybe be write the actual value of \zeta instead?
+
+    As we are looking at the spectrum for every configuration $\zeta$, we will denote
+    the eigenstates by $\ket*{\Phi_I(\zeta)}$.
+    Correspondingly, there is a $\zeta$-dependence in the single-particle states
+    $\ket*{\phi^{A}_i}$, and the Schmidt states $\ket*{\psi^{A}_i}$.
 
     \subsection{Configuration I}
         % This regime is supposed to make the two-body wave function
@@ -796,7 +808,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
 
         The purpose of this well configuration is to allow measurements and gates acting on one qubit without affecting the state of the other qubit. This requires that the two-body wave function is separable in the single-particle basis, or equivalently a product state in the natural orbital basis, i.e. the eigenstates can be written as
         \begin{align*}
-            \ket{\Psi_I}
+            \ket{\Phi_I}
             % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
             % \ket*{\phi^{L}_k \phi^{R}_l}
             = \qty(
@@ -806,8 +818,10 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
                 \sum_{l = 1}^{N^R}
                 d^R_{l, I} \ket{\phi^R_l}
             )
-            = \ket{\xi^L_I \xi^{R}_I},
+            = \ket{\psi^L_I \psi^{R}_I},
         \end{align*}
+        % This equation might be better placed in the section on the Schmidt basis/natural basis.
+        % See if it fits better there when that section is written.
         where $\ket*{\xi^L_I}, \ket*{\xi^R_I}$ denotes the natural orbitals, or
         Schmidt basis, for the separable wave function. By definition this is a product state and thus the entropy is zero. To achieve this property of the wave function, we target a well configuration with large qubit detuning, i.e. a large difference in excitation energy for each subsystem. This ensures that no entanglement occurs.  % TODO: Are there works that can be cited on this?
         % Or is it possible to show for some model system?
@@ -828,7 +842,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         % regime and to the double-avoided crossing regime where only
         % the $\ket*{01}$ and $\ket*{10}$ will mix.
         In the second well configuration we target an avoided crossing between the $\ket*{01}$ and
-        $\ket*{10}$ state, which is meant to be used for an entangling two-qubit gate. When moving from configuration I into the avoided crossing of configuration II infinitely slow, the probability of a transition from the $\ket*{01}$ to the $\ket*{10}$ state is zero according to the adiabatic theorem. An infinitely fast shift in configuration will instead cause the transition probability to be 1. Changing configuration, i.e. $\vb*{V}(\zeta)$, with a finite speed $\dv{\zeta}{t}$ will thus result in a transition probability $p\in(0,1)$ and hence an entangled state. %Should this be explained in some other way? Is an explanation even needed?
+        $\ket*{10}$ state, which is meant to be used for an entangling two-qubit gate. When moving from configuration I into the avoided crossing of configuration II infinitely slow, the probability of a transition from the $\ket*{01}$ to the $\ket*{10}$ state is zero according to the adiabatic theorem. An infinitely fast shift in configuration will instead cause the transition probability to be 1. Changing configuration $\vb*{V}(\zeta)$ with a finite speed $\dv{\zeta}{t}$ will thus result in a transition probability between one and zero, and hence an entangled state. %Should this be explained in some other way? Is an explanation even needed?
         
     % \subsection{Triple-avoided crossing regime}
     %     The last regime concerns the so-called triple-avoided crossing
@@ -851,7 +865,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
     %     The $ZZ$ coupling strength is given by $\zeta = E_{11}-E_{01}-E_{10}$. %TODO: Write about this?
 
     \subsection{Configuration III}
-        The last configuration corresponds to an avoided crossing between the three double excitation energy levels $E_{11}, E_{20}$ and $E_{02}$, i.e. a triple degeneracy point. There are two reasons to include this configuration in our well parameterization. The first is that the triple degeneracy yields a high $ZZ$-coupling, which allows for faster execution of controlled phase gates such as the CZ gate. The second reason is to separate the avoided crossings of the double excitation energy levels from the crossing of the single excitation states (configuration II), as seen in see figure ?. This separation reduces the parasitic $ZZ$-coupling in configuration II and therefore improve the performance of the entangling gates that we aim to realize in that configuration \cite{triple-avoided-crossing}. 
+        The last configuration corresponds to coinciding avoided crossings between the three double excitation energy levels $E_{11}, E_{20}$ and $E_{02}$, i.e. a triple degeneracy point. There are two reasons to include this configuration in our well parameterization. The first is that the triple degeneracy yields a high $ZZ$-coupling, which allows for faster execution of controlled phase gates such as the CZ gate. The second reason is to separate the avoided crossings of the double excitation energy levels from the crossing of the single excitation states (configuration II), as seen in see figure ?. This separation reduces the parasitic $ZZ$-coupling in configuration II and therefore improve the performance of the entangling gates that we aim to realize in that configuration \cite{triple-avoided-crossing}. 
     
 
 
@@ -866,7 +880,7 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         An optimal well configuration for doing one-qubit operations, that is, operations on each individual well, is a configuration for which the wells have distinct excitation frequencies. The resonator can then interact with each well through photons of its specific frequency. Since the frequency of each well depends mainly on the curvature at the bottom of the well,\may{[ref?]} we want to adjust the curvatures of each well so that the frequencies are distinct, but at the same time within the resonator working range of 5 to 15 GHz.\may{[ref]} In order to adjust the curvatures directly, 
         an inversion program was implemented, which, given 7 constraints on the potential $V(x)$ and its derivatives, returns the 7 required voltages $\boldsymbol{V}$ on the electrodes.\may{[link to folder]} \may{[Add equations to elaborate on this?]} To pin down the desired overall shape of a double well, 3 constraints had to be spent on the depths of each well and the depth of the well divide in the middle of the device. 2 further constraints were used to ensure a slope of zero at the bottom points of each well, leaving the last 2 constraints to control the curvature at the bottom points. Using this inversion program, we were able to find a configuration for which the wells are detuned within the resonator working range, while keeping the entanglement of each energy state low and the voltages below magnitudes which would lead to electric breakdown between the electrodes or from the helium surface to the electrodes. This configuration, from here on refered to as the \textit{detuned configuration} is further described and discussed in section \ref{sec:results}.
         
-        
+        %rewrite indexes from eigenstate 0,1,2, etc instead of 00, 01, 10, 11.
         Having found the voltages for the detuned configuration, we want to go from this configuration to a double avoided crossing. In order to do this, we want the computational basis states $\rho_{10}(\boldsymbol{V})$ and $\rho_{01}(\boldsymbol{V})$ to become entangled, while the entanglement between the other computational basis states remain as small as possible. Note that we have now written down the dependence of the states on the voltages $\boldsymbol{V}$ explicitly, as these are the only parameters that should be varied to generate the entanglement. As a measure of entanglement, we use the entanglement entropy given by
         \begin{align*}
             S_{ij}(\boldsymbol{V}) = -\Tr{\Tr_R{\rho_{ij}(\boldsymbol{V})}\log_2[\Tr_R{\rho_{ij}(\boldsymbol{V})]}},
