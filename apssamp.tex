@@ -808,21 +808,25 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
 
         The purpose of this well configuration is to allow measurements and gates acting on one qubit without affecting the state of the other qubit. This requires that the two-body wave function is separable in the single-particle basis, or equivalently a product state in the natural orbital basis, i.e. the eigenstates can be written as
         \begin{align*}
-            \ket{\Phi_I}
+            \ket{\Phi_I(\zeta_I)}
             % &= \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R} C_{kl, I}
             % \ket*{\phi^{L}_k \phi^{R}_l}
-            = \qty(
-                \sum_{k = 1}^{N^L}
-                d^L_{k, I} \ket{\phi^L_k}
-            ) \otimes \qty(
-                \sum_{l = 1}^{N^R}
-                d^R_{l, I} \ket{\phi^R_l}
-            )
+            % &= \qty(
+            %     \sum_{k = 1}^{N^L}
+            %     d^L_{k, I} \ket{\phi^L_k}
+            % ) \otimes \qty(
+            %     \sum_{l = 1}^{N^R}
+            %     d^R_{l, I} \ket{\phi^R_l}
+            % )
+            % \\
+            = \sum_{k = 1}^{N^L} \sum_{l = 1}^{N^R}
+            d^L_{k, I} d^{R}_{l, I}
+            \ket{\phi^L_k \phi^R_l}
             = \ket{\psi^L_I \psi^{R}_I},
         \end{align*}
         % This equation might be better placed in the section on the Schmidt basis/natural basis.
         % See if it fits better there when that section is written.
-        where $\ket*{\xi^L_I}, \ket*{\xi^R_I}$ denotes the natural orbitals, or
+        where $\ket*{\psi^L_I}, \ket*{\psi^R_I}$ denotes the natural orbitals, or
         Schmidt basis, for the separable wave function. By definition this is a product state and thus the entropy is zero. To achieve this property of the wave function, we target a well configuration with large qubit detuning, i.e. a large difference in excitation energy for each subsystem. This ensures that no entanglement occurs.  % TODO: Are there works that can be cited on this?
         % Or is it possible to show for some model system?
 
@@ -843,6 +847,9 @@ The electron motional states read-out scheme is shown on Fig.~\ref{fig1}a and is
         % the $\ket*{01}$ and $\ket*{10}$ will mix.
         In the second well configuration we target an avoided crossing between the $\ket*{01}$ and
         $\ket*{10}$ state, which is meant to be used for an entangling two-qubit gate. When moving from configuration I into the avoided crossing of configuration II infinitely slow, the probability of a transition from the $\ket*{01}$ to the $\ket*{10}$ state is zero according to the adiabatic theorem. An infinitely fast shift in configuration will instead cause the transition probability to be 1. Changing configuration $\vb*{V}(\zeta)$ with a finite speed $\dv{\zeta}{t}$ will thus result in a transition probability between one and zero, and hence an entangled state. %Should this be explained in some other way? Is an explanation even needed?
+        In our system we have that logical states $\ket*{01}$ and $\ket*{10}$ correspond
+        to the two first excited states $\ket*{\Phi_1(\zeta_{II})}$ and
+        $\ket*{\Phi_2(\zeta_{II})}$.
         
     % \subsection{Triple-avoided crossing regime}
     %     The last regime concerns the so-called triple-avoided crossing
